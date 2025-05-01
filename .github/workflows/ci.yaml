@@ -11,24 +11,36 @@ on:
 
 jobs:
   lint:
-    name: Lint
+    name: Lint & Prettier Check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
         with:
           version: 8
-      - run: pnpm install
-      - run: pnpm run lint
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Prettier Check
+        run: npx prettier --check .
+
+      - name: ESLint
+        run: pnpm run lint
 
   type-check:
     name: Type-check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
         with:
           version: 8
+
       - run: pnpm install
       - run: pnpm run type-check
 
@@ -37,8 +49,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
         with:
           version: 8
+
       - run: pnpm install
       - run: pnpm test

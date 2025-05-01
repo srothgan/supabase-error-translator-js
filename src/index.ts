@@ -38,7 +38,7 @@ export function setLanguage(lang: SupportedLanguage | "auto"): void {
  */
 export function translateErrorCode(
   code: string,
-  lang?: SupportedLanguage | "auto"
+  lang?: SupportedLanguage | "auto",
 ): string {
   // determine target language without mutating currentLanguage
   let target: SupportedLanguage;

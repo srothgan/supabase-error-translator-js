@@ -1,6 +1,6 @@
 # Supabase Translator JS
 
->  **DISCLAIMER:** This is a private project and is NOT officially associated with, endorsed by, or affiliated with Supabase in any way. This project is maintained independently.
+> **DISCLAIMER:** This is a private project and is NOT officially associated with, endorsed by, or affiliated with Supabase in any way. This project is maintained independently.
 
 A simple JavaScript/TypeScript library for translating Supabase messages and error codes across multiple languages.
 
@@ -9,6 +9,7 @@ A simple JavaScript/TypeScript library for translating Supabase messages and err
 This library provides translations for Supabase error codes and messages in multiple languages. It's designed to help developers create a better user experience by displaying localized error messages to users based on their preferred language.
 
 Currently supports the following languages:
+
 - English (en)
 - German (de)
 - Spanish (es)
@@ -31,33 +32,36 @@ yarn add supabase-error-translator-js
 ### Basic Usage
 
 ```typescript
-import { translateErrorCode, setLanguage } from 'supabase-error-translator-js';
+import { translateErrorCode, setLanguage } from "supabase-error-translator-js";
 
 // Set the language (defaults to English if not set)
-setLanguage('es'); // Set to Spanish
+setLanguage("es"); // Set to Spanish
 
 // Translate an error code
-const message = translateErrorCode('email_not_confirmed');
+const message = translateErrorCode("email_not_confirmed");
 console.log(message); // Outputs the Spanish translation for this error code
 ```
 
 ### Auto-Detect Browser Language
 
 ```typescript
-import { setLanguage, translateErrorCode } from 'supabase-error-translator-js';
+import { setLanguage, translateErrorCode } from "supabase-error-translator-js";
 
 // Automatically detect and use the browser's language
-setLanguage('auto');
+setLanguage("auto");
 
 // Translate an error code using the detected language
-const message = translateErrorCode('invalid_credentials');
+const message = translateErrorCode("invalid_credentials");
 console.log(message);
 ```
 
 ### Get Current Language and Supported Languages
 
 ```typescript
-import { getCurrentLanguage, getSupportedLanguages } from 'supabase-error-translator-js';
+import {
+  getCurrentLanguage,
+  getSupportedLanguages,
+} from "supabase-error-translator-js";
 
 // Get the currently active language
 const currentLang = getCurrentLanguage();
@@ -71,10 +75,10 @@ console.log(supportedLangs); // ['en', 'de', 'es', 'fr']
 ### Override Language for Specific Translations
 
 ```typescript
-import { translateErrorCode } from 'supabase-error-translator-js';
+import { translateErrorCode } from "supabase-error-translator-js";
 
 // Translate using a specific language (without changing the default)
-const message = translateErrorCode('phone_exists', 'fr');
+const message = translateErrorCode("phone_exists", "fr");
 console.log(message); // French translation
 ```
 
@@ -96,7 +100,6 @@ Sets the current language for translations. If "auto" is passed, it will attempt
 
 - **Parameters:**
   - `lang`: A supported ISO language code ('en', 'de', 'es', 'fr') or "auto"
-  
 - **Behavior:**
   - If an unsupported language is provided, falls back to English ('en')
 
@@ -105,6 +108,7 @@ Sets the current language for translations. If "auto" is passed, it will attempt
 Translates a Supabase error code into localized text.
 
 - **Parameters:**
+
   - `code`: The Supabase error code to translate
   - `lang`: (Optional) Override the current language for this translation
 
@@ -130,36 +134,36 @@ Returns an array of all supported language codes.
 ### React Integration
 
 ```jsx
-import React, { useEffect } from 'react';
-import { setLanguage, translateErrorCode } from 'supabase-error-translator-js';
-import { supabase } from './supabaseClient';
+import React, { useEffect } from "react";
+import { setLanguage, translateErrorCode } from "supabase-error-translator-js";
+import { supabase } from "./supabaseClient";
 
 function LoginForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
   useEffect(() => {
     // Set language based on user preference or browser
-    setLanguage('auto');
+    setLanguage("auto");
   }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    
+
     try {
       const { error } = await supabase.auth.signInWithPassword({
         email,
-        password
+        password,
       });
-      
+
       if (error) {
         // Translate the error code
         const translatedError = translateErrorCode(error.code);
         setError(translatedError);
       }
     } catch (err) {
-      setError('An unexpected error occurred');
+      setError("An unexpected error occurred");
     }
   };
 
@@ -200,6 +204,7 @@ Each error code is translated according to the specified language.
 ## Upcoming Error Codes
 
 The library is not finished. Upcoming supabase error code translations are:
+
 - Database (have not yet found them in the docs)
 - Storage
 - Realtime
