@@ -1,0 +1,12 @@
+# .prettierignore
+
+# lockfiles
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# build/artifacts
+dist/
+coverage/
+node_modules/
+__tests__/
