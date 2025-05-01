@@ -1,0 +1,36 @@
+{
+  "name": "supabase-error-translator-js",
+  "version": "1.0.0",
+  "description": "A simple supabase error code translator with ISO language codes",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest --coverage",
+    "lint": "eslint . --ext .ts",
+    "type-check": "tsc --noEmit"
+  },
+  "license": "MIT",
+  "author": "Simon Peter Rothgang",
+  "keywords": [
+    "supabase",
+    "i18n",
+    "translation",
+    "messages",
+    "error",
+    "internationalization",
+    "localization"
+  ],
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-prettier": "^5.2.6",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "ts-jest": "^29.3.2",
+    "typescript": "^5.0.0"
+  }
+}
