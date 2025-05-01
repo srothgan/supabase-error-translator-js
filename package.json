@@ -4,12 +4,20 @@
   "description": "A simple supabase error code translator with ISO language codes",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsc",
     "test": "jest --coverage",
     "lint": "eslint . --ext .ts",
     "type-check": "tsc --noEmit"
   },
+  "repository": { "type": "git", "url": "https://github.com/srothgan/supabase-error-translator-js.git" },
+  "bugs":        { "url": "https://github.com/srothgan/supabase-error-translator-js/issues" },
+  "homepage":    "https://github.com/srothgan/supabase-error-translator-js#readme",
   "license": "MIT",
   "author": "Simon Peter Rothgang",
   "keywords": [
