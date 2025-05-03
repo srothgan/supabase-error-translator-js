@@ -21,7 +21,7 @@ A simple JavaScript/TypeScript library for translating Supabase error codes acro
 - [API Reference](#api-reference)
 - [Examples](#examples)
 - [Supported Error Codes](#supported-error-codes)
-- [Upcoming Error Codes](#upcoming-error-codes)
+- [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -286,4 +286,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to contribute to th
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the [MIT License](LICENSE) - see the LICENSE file for details.
