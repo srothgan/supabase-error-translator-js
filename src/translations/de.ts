@@ -88,4 +88,68 @@ export default {
   user_sso_managed: 'SSO-verwalteter Benutzer kann nicht geändert werden.',
   validation_failed: 'Validierungsfehler in den übergebenen Parametern.',
   weak_password: 'Passwort erfüllt nicht die Stärke-Anforderungen.',
+
+  // Realtime Error Codes
+  RealtimeDisabledForConfiguration:
+    'Die für Realtime bereitgestellte Konfiguration kann keine Postgres-Änderungen liefern. Überprüfen Sie Ihre Konfiguration beim Kanalstart, da Ihre Tabellen möglicherweise nicht richtig registriert sind.',
+  TenantNotFound:
+    'Der Tenant, zu dem Sie eine Verbindung herstellen möchten, existiert nicht. Überprüfen Sie, ob der Tenant-Name, zu dem Sie eine Verbindung herstellen möchten, in der Tabelle realtime.tenants existiert.',
+  ErrorConnectingToWebSocket:
+    'Fehler beim Versuch, eine Verbindung zum WebSocket-Server herzustellen. Überprüfen Sie Ihre Benutzerinformationen bei der Verbindung.',
+  ErrorAuthorizingWebSocket:
+    'Fehler beim Versuch, die WebSocket-Verbindung zu autorisieren. Überprüfen Sie Ihre Benutzerinformationen bei der Verbindung.',
+  TableHasSpacesInName:
+    'Die Tabelle, die Sie überwachen möchten, enthält Leerzeichen im Namen, die nicht unterstützt werden. Ändern Sie den Tabellennamen, um Leerzeichen zu entfernen.',
+  UnableToDeleteTenant:
+    'Fehler beim Versuch, einen Tenant zu löschen. Kontaktieren Sie den Support.',
+  UnableToSetPolicies:
+    'Fehler beim Einrichten von Autorisierungsrichtlinien. Kontaktieren Sie den Support.',
+  UnableCheckoutConnection:
+    'Fehler beim Versuch, eine Verbindung aus dem Tenant-Pool zu entnehmen. Kontaktieren Sie den Support.',
+  UnableToSubscribeToPostgres:
+    'Fehler beim Versuch, Postgres-Änderungen zu abonnieren. Kontaktieren Sie den Support.',
+  ChannelRateLimitReached:
+    'Die Anzahl der Kanäle, die Sie erstellen können, hat ihr Limit erreicht. Kontaktieren Sie den Support, um Ihre Ratenbegrenzungen zu erhöhen.',
+  ConnectionRateLimitReached:
+    'Die Anzahl der verbundenen Clients hat ihr Limit erreicht. Kontaktieren Sie den Support, um Ihre Ratenbegrenzungen zu erhöhen.',
+  ClientJoinRateLimitReached:
+    'Die Rate der Beitritte pro Sekunde von Ihren Clients hat die Kanallimits erreicht. Kontaktieren Sie den Support, um Ihre Ratenbegrenzungen zu erhöhen.',
+  UnableToConnectToTenantDatabase:
+    'Realtime konnte keine Verbindung zur Datenbank des Tenants herstellen. Kontaktieren Sie den Support für weitere Anweisungen.',
+  RealtimeNodeDisconnected:
+    'Realtime ist eine verteilte Anwendung und kann nicht mit einem der verteilten Knoten kommunizieren. Kontaktieren Sie den Support für weitere Anweisungen.',
+  MigrationsFailedToRun:
+    'Fehler beim Ausführen der von Realtime benötigten Migrationen gegen die Tenant-Datenbank. Kontaktieren Sie den Support für weitere Anweisungen.',
+  ErrorStartingPostgresCDCStream:
+    'Fehler beim Starten des Postgres CDC-Streams für Postgres-Änderungen. Kontaktieren Sie den Support für weitere Anweisungen.',
+  UnknownDataProcessed:
+    'Ein unbekannter Datentyp wurde vom Realtime-System verarbeitet. Kontaktieren Sie den Support für weitere Anweisungen.',
+  ErrorStartingPostgresCDC:
+    'Fehler beim Starten der Postgres CDC-Erweiterung für Postgres-Änderungen. Kontaktieren Sie den Support für weitere Anweisungen.',
+  ReplicationSlotBeingUsed:
+    'Der Replikationsslot wird von einer anderen Transaktion verwendet. Kontaktieren Sie den Support für weitere Anweisungen.',
+  PoolingReplicationPreparationError:
+    'Fehler bei der Vorbereitung des Replikationsslots. Kontaktieren Sie den Support für weitere Anweisungen.',
+  PoolingReplicationError:
+    'Fehler beim Pooling des Replikationsslots. Kontaktieren Sie den Support für weitere Anweisungen.',
+  SubscriptionDeletionFailed:
+    'Fehler beim Versuch, ein Abonnement für Postgres-Änderungen zu löschen. Kontaktieren Sie den Support für weitere Anweisungen.',
+  UnableToDeletePhantomSubscriptions:
+    'Fehler beim Versuch, Abonnements zu löschen, die nicht mehr verwendet werden. Kontaktieren Sie den Support für weitere Anweisungen.',
+  UnableToCheckProcessesOnRemoteNode:
+    'Fehler beim Versuch, die Prozesse auf einem Remote-Knoten zu überprüfen. Kontaktieren Sie den Support für weitere Anweisungen.',
+  UnableToCreateCounter:
+    'Fehler beim Versuch, einen Zähler zur Verfolgung von Ratenbegrenzungen für einen Tenant zu erstellen. Kontaktieren Sie den Support für weitere Anweisungen.',
+  UnableToIncrementCounter:
+    'Fehler beim Versuch, einen Zähler zur Verfolgung von Ratenbegrenzungen für einen Tenant zu erhöhen. Kontaktieren Sie den Support für weitere Anweisungen.',
+  UnableToDecrementCounter:
+    'Fehler beim Versuch, einen Zähler zur Verfolgung von Ratenbegrenzungen für einen Tenant zu verringern. Kontaktieren Sie den Support für weitere Anweisungen.',
+  UnableToUpdateCounter:
+    'Fehler beim Versuch, einen Zähler zur Verfolgung von Ratenbegrenzungen für einen Tenant zu aktualisieren. Kontaktieren Sie den Support für weitere Anweisungen.',
+  UnableToFindCounter:
+    'Fehler beim Versuch, einen Zähler zur Verfolgung von Ratenbegrenzungen für einen Tenant zu finden. Kontaktieren Sie den Support für weitere Anweisungen.',
+  UnhandledProcessMessage:
+    'Nicht behandelte Nachricht von einem Realtime-Prozess empfangen. Kontaktieren Sie den Support für weitere Anweisungen.',
+  UnknownError:
+    'Ein unbekannter Fehler ist aufgetreten. Kontaktieren Sie den Support für weitere Anweisungen',
 };

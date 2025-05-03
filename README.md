@@ -254,12 +254,18 @@ function SignupForm() {
 
 The library supports numerous Supabase error codes, including but not limited to:
 
-- Supabase Auth
+- Auth
   - Authentication errors (invalid credentials, email not confirmed, etc.)
   - User management errors (user not found, already exists, etc.)
   - Rate limiting errors (too many requests, over email send rate, etc.)
   - MFA-related errors (challenge expired, verification failed, etc.)
   - OAuth and SSO errors (provider disabled, bad callback, etc.)
+- Realtime
+  - Configuration errors (disabled realtime, tenant not found, etc.)
+  - Connection errors (WebSocket connection issues, authorization failures)
+  - Rate limiting errors (channel limits, connection limits, join rate limits)
+  - Database errors (CDC stream issues, replication slot problems)
+  - System errors (node disconnection, migration failures, counter tracking errors)
 
 Each error code is translated according to the specified language.
 
@@ -269,7 +275,8 @@ We’re actively expanding support for additional Supabase error domains. Planne
 
 - **Database**: Coming soon (pending official documentation).
 - **Storage**: In progress.
-- **Realtime**: In progress.
+- **Realtime**: Done.
+- **Auth**: Done
 
 ## Contributing
 

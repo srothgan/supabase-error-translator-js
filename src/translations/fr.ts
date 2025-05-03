@@ -88,4 +88,67 @@ export default {
   user_sso_managed: 'Utilisateur SSO non modifiable.',
   validation_failed: 'Échec de la validation des paramètres.',
   weak_password: 'Mot de passe trop faible.',
+
+  // Realtime Error Codes
+  RealtimeDisabledForConfiguration:
+    'La configuration fournie à Realtime ne pourra pas fournir de changements Postgres. Vérifiez votre configuration au démarrage du canal, car vos tables pourraient ne pas être correctement enregistrées.',
+  TenantNotFound:
+    "Le locataire auquel vous essayez de vous connecter n'existe pas. Vérifiez que le nom du locataire auquel vous essayez de vous connecter existe dans la table realtime.tenants.",
+  ErrorConnectingToWebSocket:
+    'Erreur lors de la tentative de connexion au serveur WebSocket. Vérifiez vos informations utilisateur lors de la connexion.',
+  ErrorAuthorizingWebSocket:
+    "Erreur lors de la tentative d'autorisation de la connexion WebSocket. Vérifiez vos informations utilisateur lors de la connexion.",
+  TableHasSpacesInName:
+    "La table que vous essayez d'écouter contient des espaces dans son nom, ce qui n'est pas pris en charge. Changez le nom de la table pour supprimer les espaces.",
+  UnableToDeleteTenant:
+    "Erreur lors de la tentative de suppression d'un locataire. Contactez le support.",
+  UnableToSetPolicies:
+    "Erreur lors de la configuration des politiques d'autorisation. Contactez le support.",
+  UnableCheckoutConnection:
+    "Erreur lors de la tentative de récupération d'une connexion du pool de locataires. Contactez le support.",
+  UnableToSubscribeToPostgres:
+    "Erreur lors de la tentative d'abonnement aux changements Postgres. Contactez le support.",
+  ChannelRateLimitReached:
+    'Le nombre de canaux que vous pouvez créer a atteint sa limite. Contactez le support pour augmenter vos limites de taux.',
+  ConnectionRateLimitReached:
+    'Le nombre de clients connectés a atteint sa limite. Contactez le support pour augmenter vos limites de taux.',
+  ClientJoinRateLimitReached:
+    'Le taux de jointures par seconde de vos clients a atteint les limites du canal. Contactez le support pour augmenter vos limites de taux.',
+  UnableToConnectToTenantDatabase:
+    "Realtime n'a pas pu se connecter à la base de données du locataire. Contactez le support pour plus d'instructions.",
+  RealtimeNodeDisconnected:
+    "Realtime est une application distribuée et ne peut pas communiquer avec l'un des nœuds distribués. Contactez le support pour plus d'instructions.",
+  MigrationsFailedToRun:
+    "Erreur lors de l'exécution des migrations requises par Realtime contre la base de données du locataire. Contactez le support pour plus d'instructions.",
+  ErrorStartingPostgresCDCStream:
+    "Erreur lors du démarrage du flux CDC Postgres utilisé pour les changements Postgres. Contactez le support pour plus d'instructions.",
+  UnknownDataProcessed:
+    "Un type de données inconnu a été traité par le système Realtime. Contactez le support pour plus d'instructions.",
+  ErrorStartingPostgresCDC:
+    "Erreur lors du démarrage de l'extension CDC Postgres utilisée pour les changements Postgres. Contactez le support pour plus d'instructions.",
+  ReplicationSlotBeingUsed:
+    "Le slot de réplication est utilisé par une autre transaction. Contactez le support pour plus d'instructions.",
+  PoolingReplicationPreparationError:
+    "Erreur lors de la préparation du slot de réplication. Contactez le support pour plus d'instructions.",
+  PoolingReplicationError:
+    "Erreur lors du pooling du slot de réplication. Contactez le support pour plus d'instructions.",
+  SubscriptionDeletionFailed:
+    "Erreur lors de la tentative de suppression d'un abonnement pour les changements Postgres. Contactez le support pour plus d'instructions.",
+  UnableToDeletePhantomSubscriptions:
+    "Erreur lors de la tentative de suppression d'abonnements qui ne sont plus utilisés. Contactez le support pour plus d'instructions.",
+  UnableToCheckProcessesOnRemoteNode:
+    "Erreur lors de la tentative de vérification des processus sur un nœud distant. Contactez le support pour plus d'instructions.",
+  UnableToCreateCounter:
+    "Erreur lors de la tentative de création d'un compteur pour suivre les limites de taux pour un locataire. Contactez le support pour plus d'instructions.",
+  UnableToIncrementCounter:
+    "Erreur lors de la tentative d'incrémentation d'un compteur pour suivre les limites de taux pour un locataire. Contactez le support pour plus d'instructions.",
+  UnableToDecrementCounter:
+    "Erreur lors de la tentative de décrémentation d'un compteur pour suivre les limites de taux pour un locataire. Contactez le support pour plus d'instructions.",
+  UnableToUpdateCounter:
+    "Erreur lors de la tentative de mise à jour d'un compteur pour suivre les limites de taux pour un locataire. Contactez le support pour plus d'instructions.",
+  UnableToFindCounter:
+    "Erreur lors de la tentative de recherche d'un compteur pour suivre les limites de taux pour un locataire. Contactez le support pour plus d'instructions.",
+  UnhandledProcessMessage:
+    "Message non géré reçu par un processus Realtime. Contactez le support pour plus d'instructions.",
+  UnknownError: "Une erreur inconnue s'est produite. Contactez le support pour plus d'instructions",
 };

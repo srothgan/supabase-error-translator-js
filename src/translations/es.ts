@@ -88,4 +88,65 @@ export default {
   user_sso_managed: 'Usuario SSO no editable.',
   validation_failed: 'Error de validación de parámetros.',
   weak_password: 'Contraseña demasiado débil.',
+
+  // Realtime Error Codes
+  RealtimeDisabledForConfiguration:
+    'La configuración proporcionada a Realtime no podrá entregar cambios de Postgres. Verifique su configuración al iniciar el canal, ya que es posible que sus tablas no estén registradas correctamente.',
+  TenantNotFound:
+    'El inquilino al que intenta conectarse no existe. Verifique que el nombre del inquilino al que intenta conectarse exista en la tabla realtime.tenants.',
+  ErrorConnectingToWebSocket:
+    'Error al intentar conectarse al servidor WebSocket. Verifique su información de usuario al conectarse.',
+  ErrorAuthorizingWebSocket:
+    'Error al intentar autorizar la conexión WebSocket. Verifique su información de usuario al conectarse.',
+  TableHasSpacesInName:
+    'La tabla a la que intenta escuchar tiene espacios en su nombre, lo cual no es compatible. Cambie el nombre de la tabla para eliminar los espacios.',
+  UnableToDeleteTenant: 'Error al intentar eliminar un inquilino. Contacte con soporte.',
+  UnableToSetPolicies: 'Error al configurar las políticas de autorización. Contacte con soporte.',
+  UnableCheckoutConnection:
+    'Error al intentar retirar una conexión del pool de inquilinos. Contacte con soporte.',
+  UnableToSubscribeToPostgres:
+    'Error al intentar suscribirse a los cambios de Postgres. Contacte con soporte.',
+  ChannelRateLimitReached:
+    'El número de canales que puede crear ha alcanzado su límite. Contacte con soporte para aumentar sus límites de tasa.',
+  ConnectionRateLimitReached:
+    'El número de clientes conectados ha alcanzado su límite. Contacte con soporte para aumentar sus límites de tasa.',
+  ClientJoinRateLimitReached:
+    'La tasa de uniones por segundo de sus clientes ha alcanzado los límites del canal. Contacte con soporte para aumentar sus límites de tasa.',
+  UnableToConnectToTenantDatabase:
+    'Realtime no pudo conectarse a la base de datos del inquilino. Contacte con soporte para más instrucciones.',
+  RealtimeNodeDisconnected:
+    'Realtime es una aplicación distribuida y no puede comunicarse con uno de los nodos distribuidos. Contacte con soporte para más instrucciones.',
+  MigrationsFailedToRun:
+    'Error al ejecutar las migraciones contra la base de datos del inquilino requeridas por Realtime. Contacte con soporte para más instrucciones.',
+  ErrorStartingPostgresCDCStream:
+    'Error al iniciar el stream CDC de Postgres usado para cambios de Postgres. Contacte con soporte para más instrucciones.',
+  UnknownDataProcessed:
+    'Un tipo de datos desconocido fue procesado por el sistema Realtime. Contacte con soporte para más instrucciones.',
+  ErrorStartingPostgresCDC:
+    'Error al iniciar la extensión CDC de Postgres usada para cambios de Postgres. Contacte con soporte para más instrucciones.',
+  ReplicationSlotBeingUsed:
+    'El slot de replicación está siendo usado por otra transacción. Contacte con soporte para más instrucciones.',
+  PoolingReplicationPreparationError:
+    'Error al preparar el slot de replicación. Contacte con soporte para más instrucciones.',
+  PoolingReplicationError:
+    'Error al agrupar el slot de replicación. Contacte con soporte para más instrucciones.',
+  SubscriptionDeletionFailed:
+    'Error al intentar eliminar una suscripción para cambios de Postgres. Contacte con soporte para más instrucciones.',
+  UnableToDeletePhantomSubscriptions:
+    'Error al intentar eliminar suscripciones que ya no se utilizan. Contacte con soporte para más instrucciones.',
+  UnableToCheckProcessesOnRemoteNode:
+    'Error al intentar verificar los procesos en un nodo remoto. Contacte con soporte para más instrucciones.',
+  UnableToCreateCounter:
+    'Error al intentar crear un contador para rastrear límites de tasa para un inquilino. Contacte con soporte para más instrucciones.',
+  UnableToIncrementCounter:
+    'Error al intentar incrementar un contador para rastrear límites de tasa para un inquilino. Contacte con soporte para más instrucciones.',
+  UnableToDecrementCounter:
+    'Error al intentar decrementar un contador para rastrear límites de tasa para un inquilino. Contacte con soporte para más instrucciones.',
+  UnableToUpdateCounter:
+    'Error al intentar actualizar un contador para rastrear límites de tasa para un inquilino. Contacte con soporte para más instrucciones.',
+  UnableToFindCounter:
+    'Error al intentar encontrar un contador para rastrear límites de tasa para un inquilino. Contacte con soporte para más instrucciones.',
+  UnhandledProcessMessage:
+    'Mensaje no manejado recibido por un proceso Realtime. Contacte con soporte para más instrucciones.',
+  UnknownError: 'Ocurrió un error desconocido. Contacte con soporte para más instrucciones',
 };
