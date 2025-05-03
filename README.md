@@ -194,7 +194,7 @@ function SignupForm() {
         password,
       });
 
-      if (error) {
+      if (error?.code) {
         // Translate the error code from Supabase
         const translatedError = translateErrorCode(error.code);
         setError(translatedError);
