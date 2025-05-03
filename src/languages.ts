@@ -1,5 +1,5 @@
 /** Supported ISO language codes */
-export const SUPPORTED_LANGUAGES = ["en", "de", "es", "fr"] as const;
+export const SUPPORTED_LANGUAGES = ['en', 'de', 'es', 'fr'] as const;
 export type SupportedLanguage = (typeof SUPPORTED_LANGUAGES)[number];
 
 /**
@@ -14,9 +14,9 @@ export function isSupportedLanguage(lang: string): lang is SupportedLanguage {
  * Detect the browser's default language (first part before '-')
  */
 export function detectBrowserLanguage(): SupportedLanguage {
-  if (typeof navigator !== "undefined" && navigator.language) {
-    const primary = navigator.language.split("-")[0];
+  if (typeof navigator !== 'undefined' && navigator.language) {
+    const primary = navigator.language.split('-')[0];
     if (isSupportedLanguage(primary)) return primary;
   }
-  return "en";
+  return 'en';
 }

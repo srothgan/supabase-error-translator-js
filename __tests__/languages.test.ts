@@ -5,6 +5,20 @@ import {
 } from "../src/languages";
 
 describe("languages.ts", () => {
+  const originalNavigator = window.navigator;
+
+  afterAll(() => {
+    window.navigator = originalNavigator;
+  });
+
+  test('defaults to "en" if navigator or language is unavailable', () => {
+    Object.defineProperty(window, 'navigator', { value: undefined, writable: true });
+    expect(detectBrowserLanguage()).toBe('en');
+
+    Object.defineProperty(window, 'navigator', { value: {}, writable: true });
+    expect(detectBrowserLanguage()).toBe('en');
+  });
+  
   test("SUPPORTED_LANGUAGES contains en, de, es, fr", () => {
     expect(SUPPORTED_LANGUAGES).toEqual(
       expect.arrayContaining(["en", "de", "es", "fr"]),

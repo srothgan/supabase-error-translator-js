@@ -13,7 +13,9 @@
     "build": "tsc",
     "test": "jest --coverage",
     "lint": "eslint . --ext .ts",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "prettier:check": "prettier --check .",
+    "format": "prettier --write ."
   },
   "repository": {
     "type": "git",
@@ -44,6 +46,7 @@
     "eslint-plugin-prettier": "^5.2.6",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
+    "prettier": "^3.5.3",
     "ts-jest": "^29.3.2",
     "typescript": "^5.0.0"
   }
