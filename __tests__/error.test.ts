@@ -11,18 +11,25 @@ describe("Integration: translateErrorCode()", () => {
     expect(typeof translateErrorCode("x", "auto")).toBe("string");
   });
 
-  it("fallback chain: target → en → unexpected_failure", () => {
+  it('normalizes empty or undefined codes to unknown_error', () => {
+    // empty string
+    expect(translateErrorCode('', 'es')).toBe(translations.es.unknown_error);
+    // undefined
+    expect(translateErrorCode(undefined, 'es')).toBe(translations.es.unknown_error);
+  });
+
+  it("fallback chain: target → en → unknown_error", () => {
     // 1) de has invalid_credentials
     expect(translateErrorCode("invalid_credentials", "de")).toBe(
       translations.de.invalid_credentials,
     );
     // 2) code not in fr but in en? fallback to en
     const maybeInEn = translations.en["does_not_exist"];
-    const expected = maybeInEn ?? translations.en.unexpected_failure;
+    const expected = maybeInEn ?? translations.en.unknown_error;
     expect(translateErrorCode("does_not_exist", "fr")).toBe(expected);
-    // 3) totally unknown code → unexpected_failure
+    // 3) totally unknown code → unknown_error
     expect(translateErrorCode("xyz123")).toBe(
-      translations.en.unexpected_failure,
+      translations.en.unknown_error,
     );
   });
 });

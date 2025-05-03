@@ -8,10 +8,10 @@ describe("translations index", () => {
     expect(translations).toHaveProperty("fr");
   });
 
-  it("every language defines unexpected_failure", () => {
+  it("every language defines unknown_error", () => {
     Object.entries(translations).forEach(([lang, map]) => {
-      expect(map).toHaveProperty("unexpected_failure");
-      expect(typeof map.unexpected_failure).toBe("string");
+      expect(map).toHaveProperty("unknown_error");
+      expect(typeof map.unknown_error).toBe("string");
     });
   });
 });

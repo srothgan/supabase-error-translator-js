@@ -53,15 +53,15 @@ describe("translateErrorCode()", () => {
   });
 
   test("unknown code in de falls back to en", () => {
-    // assume 'does_not_exist' is not in de but is in en? if not, will go to unexpected_failure
+    // assume 'does_not_exist' is not in de, will go to unknown_error
     const fallback =
-      translations.en["does_not_exist"] ?? translations.en.unexpected_failure;
+      translations.en["unknown_error"];
     expect(translateErrorCode("does_not_exist", "de")).toBe(fallback);
   });
 
-  test("totally unknown code returns unexpected_failure", () => {
-    expect(translateErrorCode("completely_unknown_code")).toBe(
-      translations.en.unexpected_failure,
+  test("totally unknown code returns unknown_error", () => {
+    expect(translateErrorCode("unknown_error")).toBe(
+      translations.en.unknown_error,
     );
   });
 
