@@ -1,8 +1,8 @@
 import {
   detectBrowserLanguage,
   isSupportedLanguage,
-  SUPPORTED_LANGUAGES,
 } from "../src/languages";
+import { SUPPORTED_LANGUAGES } from "../src/types";
 
 describe("languages.ts", () => {
   const originalNavigator = window.navigator;

@@ -1,10 +1,6 @@
 import { translations } from './translations';
-import {
-  detectBrowserLanguage,
-  isSupportedLanguage,
-  SupportedLanguage,
-  SUPPORTED_LANGUAGES,
-} from './languages';
+import { detectBrowserLanguage, isSupportedLanguage } from './languages';
+import { SupportedLanguage, SUPPORTED_LANGUAGES, ErrorService } from './types';
 
 let currentLanguage: SupportedLanguage = 'en';
 
@@ -28,12 +24,14 @@ export function setLanguage(lang: SupportedLanguage | 'auto'): void {
 /**
  * Map a Supabase error code (which may be empty or undefined)
  * to a user‐friendly message, with an industry‐standard fallback chain:
- *   1) locale code
- *   2) English code
- *   3) English unknown_error
+ *   1) Target language/service/code
+ *   2) English/service/code
+ *   3) Target language/unknown_error
+ *   4) English/unknown_error
  */
 export function translateErrorCode(
   code: string | undefined,
+  service: ErrorService,
   lang?: SupportedLanguage | 'auto',
 ): string {
   // — Auto‐normalize blank codes to "unknown_error"
@@ -41,27 +39,38 @@ export function translateErrorCode(
 
   // determine target language without mutating currentLanguage
   let target: SupportedLanguage;
-  if (lang === undefined) {
-    target = currentLanguage;
-  } else if (lang === 'auto') {
-    const detected = detectBrowserLanguage();
-    target = isSupportedLanguage(detected) ? detected : 'en';
+  if (lang === undefined || lang === 'auto') {
+    target = detectBrowserLanguage();
   } else {
     target = isSupportedLanguage(lang) ? lang : 'en';
   }
 
-  // 1) Specific code in target locale
-  if (translations[target][key]) {
-    return translations[target][key];
+  // Get translation sets we'll use for fallbacks
+  const targetTranslations = translations[target] || translations.en;
+  const englishTranslations = translations.en;
+
+  // If using unknown_error as the key, skip service-specific lookup
+  if (key === 'unknown_error') {
+    return targetTranslations.unknown_error || englishTranslations.unknown_error;
   }
 
-  // 2) Fallback: same code in English
-  if (translations.en[key]) {
-    return translations.en[key];
+  // 1) Specific code in target language + service
+  if (targetTranslations.services[service]?.[key]) {
+    return targetTranslations.services[service][key];
   }
 
-  // 3) Final fallback: English 'unknown_error'
-  return translations.en['unknown_error'];
+  // 2) Fallback: same code in English + service
+  if (englishTranslations.services[service]?.[key]) {
+    return englishTranslations.services[service][key];
+  }
+
+  // 3) Fallback: unknown_error in target language
+  if (targetTranslations.unknown_error) {
+    return targetTranslations.unknown_error;
+  }
+
+  // 4) Final fallback: English 'unknown_error'
+  return englishTranslations.unknown_error;
 }
 
 /** Get the currently active language. */

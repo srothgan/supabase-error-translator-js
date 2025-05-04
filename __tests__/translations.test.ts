@@ -1,5 +1,5 @@
 import { translations } from "../src/translations";
-import { SUPPORTED_LANGUAGES } from "../src/languages";
+import { SUPPORTED_LANGUAGES } from "../src/types";
 
 describe("translations index", () => {
   it("exports maps for en, de, es, fr", () => {
