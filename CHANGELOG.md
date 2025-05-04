@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.1 - 04.05.2025
+
+### FIX
+
+Fixed npm build issue.
+
 ## 2.0.0 - 04.05.2025
 
 ### Breaking Changes

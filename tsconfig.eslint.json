@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json", // Extend your primary tsconfig
+  "include": [
+    "src/**/*.ts", // Include your source files
+    "__tests__/**/*.ts" // Include your test files
+    // You might also include other lintable files like *.js, *.jsx, *.tsx if applicable
+  ],
+  "exclude": ["node_modules", "dist"]
+}
