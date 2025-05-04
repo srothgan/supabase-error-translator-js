@@ -1,6 +1,5 @@
-/** Supported ISO language codes */
-export const SUPPORTED_LANGUAGES = ['en', 'de', 'es', 'fr'] as const;
-export type SupportedLanguage = (typeof SUPPORTED_LANGUAGES)[number];
+import { SupportedLanguage } from './types';
+import { SUPPORTED_LANGUAGES } from './types';
 
 /**
  * Type guard to ensure a string is a SupportedLanguage

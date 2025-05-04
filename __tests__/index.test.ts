@@ -5,7 +5,7 @@ import {
   getSupportedLanguages,
 } from "../src/index";
 import { translations } from "../src/translations";
-import { SUPPORTED_LANGUAGES } from "../src/languages";
+import { SUPPORTED_LANGUAGES } from "../src/types";
 
 describe("Core API", () => {
   beforeEach(() => {
@@ -43,31 +43,31 @@ describe("translateErrorCode()", () => {
   beforeEach(() => setLanguage("en"));
 
   test("returns the en-text for a known code", () => {
-    const english = translations.en.invalid_credentials;
-    expect(translateErrorCode("invalid_credentials")).toBe(english);
+    const english = translations.en.services.auth.invalid_credentials;
+    expect(translateErrorCode("invalid_credentials", "auth")).toBe(english);
   });
 
   test("returns de-text when overridden to 'de'", () => {
-    const german = translations.de.invalid_credentials;
-    expect(translateErrorCode("invalid_credentials", "de")).toBe(german);
+    const german = translations.de.services.auth.invalid_credentials;
+    expect(translateErrorCode("invalid_credentials","auth", "de")).toBe(german);
   });
 
   test("unknown code in de falls back to en", () => {
     // assume 'does_not_exist' is not in de, will go to unknown_error
     const fallback =
-      translations.en["unknown_error"];
-    expect(translateErrorCode("does_not_exist", "de")).toBe(fallback);
+      translations.de.unknown_error
+    expect(translateErrorCode("does_not_exist", "auth", "de")).toBe(fallback);
   });
 
   test("totally unknown code returns unknown_error", () => {
-    expect(translateErrorCode("unknown_error")).toBe(
+    expect(translateErrorCode("unknown_error", "storage")).toBe(
       translations.en.unknown_error,
     );
   });
 
   test("unknown override-lang falls back to en", () => {
-    const english = translations.en.invalid_credentials;
-    expect(translateErrorCode("invalid_credentials", "zz" as any)).toBe(
+    const english = translations.en.services.auth.invalid_credentials;
+    expect(translateErrorCode("invalid_credentials", "auth", "zz" as any)).toBe(
       english,
     );
   });
