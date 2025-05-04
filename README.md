@@ -20,8 +20,12 @@ A simple JavaScript/TypeScript library for translating Supabase error codes acro
 - [Error Handling and Fallbacks](#error-handling-and-fallbacks)
 - [API Reference](#api-reference)
 - [Examples](#examples)
+  - [Auth Error](#auth-error)
+  - [Storage Error](#storage-error)
+  - [Realtime Error](#realtime-error)
 - [Supported Error Codes](#supported-error-codes)
 - [Roadmap](#roadmap)
+- [Changelog](#changelog)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -59,7 +63,7 @@ import { translateErrorCode, setLanguage } from 'supabase-error-translator-js';
 setLanguage('es'); // Set to Spanish
 
 // Translate an error code
-const message = translateErrorCode('email_not_confirmed');
+const message = translateErrorCode('email_not_confirmed', 'auth');
 console.log(message); // Outputs the Spanish translation for this error code
 ```
 
@@ -72,7 +76,7 @@ import { setLanguage, translateErrorCode } from 'supabase-error-translator-js';
 setLanguage('auto');
 
 // Translate an error code using the detected language
-const message = translateErrorCode('invalid_credentials');
+const message = translateErrorCode('invalid_credentials', 'auth');
 console.log(message);
 ```
 
@@ -96,19 +100,30 @@ console.log(supportedLangs); // ['en', 'de', 'es', 'fr']
 import { translateErrorCode } from 'supabase-error-translator-js';
 
 // Translate using a specific language (without changing the default)
-const message = translateErrorCode('phone_exists', 'fr');
+const message = translateErrorCode('phone_exists', 'auth', 'fr');
 console.log(message); // French translation
 ```
 
 ## Error Handling and Fallbacks
 
-We normalize any empty or whitespace-only code to the special key `unknown_error` before doing any locale lookups. From there, we follow a three-step, industry-standard chain:
+We normalize any empty or whitespace-only code to the special key `unknown_error` before doing any locale lookups. From there, we follow a four-step, industry-standard fallback chain:
 
-1. **Locale lookup**: return `translations[target][key]` (this will even return `translations[target]["unknown_error"]` for blank codes).
-2. **English lookup**: if the code isn’t in the user’s locale, try `translations.en[key]`.
-3. **Generic fallback**: finally, return `translations.en["unknown_error"]`.
+1. **Service-specific locale lookup**: First try `translations[target].services[service][key]` - looking for the error code in the specified service in the user's language.
 
-This ensures that blank or unrecognized codes first yield a localized “unknown error” message before ever falling back to English.
+2. **Service-specific English lookup**: If not found in the target language, try `translations.en.services[service][key]` - looking for the error code in the specified service in English.
+
+3. **Generic locale fallback**: If the service-specific code isn't found, try `translations[target].unknown_error` - the generic unknown error message in the user's language.
+
+4. **Generic English fallback**: Finally, return `translations.en.unknown_error` - the generic unknown error message in English.
+
+This enhanced fallback chain ensures that:
+
+- Service-specific error codes are properly translated
+- Blank or unrecognized codes first yield a localized "unknown error" message before falling back to English
+- The system is resilient to missing translations in any language or service
+- Special handling for direct "unknown_error" requests bypasses service-specific lookups for efficiency
+
+The `service` parameter allows the system to correctly handle cases where the same error code exists in multiple Supabase services with different meanings and contexts.
 
 ## API Reference
 
@@ -121,23 +136,30 @@ Sets the current language for translations. If "auto" is passed, it will attempt
 - **Behavior:**
   - If an unsupported language is provided, falls back to English ('en')
 
-### `translateErrorCode(code?: string, lang?: SupportedLanguage | "auto"): string`
+### `translateErrorCode(code?: string, service: ErrorService, lang?: SupportedLanguage | "auto"): string`
 
-Translates a Supabase error code into localized text, normalizing blank or missing codes to `unknown_error`.
+Translates a Supabase error code into localized text, normalizing blank or missing codes to unknown_error.
 
 - **Parameters:**
 
-  - `code?`: The Supabase error code to translate. If `undefined` or empty, treated as `"unknown_error"`.
+  - `code?`: The Supabase error code to translate. If undefined or empty, treated as "unknown_error".
+  - `service`: The Supabase service that generated the error:
+    - 'auth' - Authentication and user management errors
+    - 'storage' - File storage errors
+    - 'realtime' - Realtime subscription errors
+    - 'database' - Database query errors
+    - 'functions' - Edge Functions errors
   - `lang?`: (Optional)
-    - Omitted → use `currentLanguage`.
-    - `"auto"` → detect via `detectBrowserLanguage()`, fallback to `'en'` if unsupported.
-    - Any other value → if unsupported, fallback to `'en'`.
+    - Omitted → use currentLanguage
+    - "auto" → detect via detectBrowserLanguage(), fallback to 'en' if unsupported
+    - Any other value → if unsupported, fallback to 'en'
 
 - **Returns:**
   - The translated message, using this lookup chain:
-    1. `translations[target][key]`
-    2. `translations.en[key]`
-    3. `translations.en["unknown_error"]`
+    1. translations[target].services[service][key]
+    2. translations.en.services[service][key]
+    3. translations[target].unknown_error
+    4. translations.en.unknown_error
 
 ### `getCurrentLanguage(): SupportedLanguage`
 
@@ -155,7 +177,7 @@ Returns an array of all supported language codes.
 
 ## Examples
 
-### Nextjs15 Integration
+### Auth Error
 
 ```jsx
 import React, { useState, useEffect } from 'react';
@@ -167,7 +189,6 @@ function SignupForm() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -181,13 +202,6 @@ function SignupForm() {
     setError(null);
     setIsLoading(true);
 
-    // Basic validation
-    if (password !== confirmPassword) {
-      setError(translateErrorCode('same_password'));
-      setIsLoading(false);
-      return;
-    }
-
     try {
       const { error } = await supabase.auth.signUp({
         email,
@@ -196,7 +210,7 @@ function SignupForm() {
 
       if (error?.code) {
         // Translate the error code from Supabase
-        const translatedError = translateErrorCode(error.code);
+        const translatedError = translateErrorCode(error.code, 'auth');
         setError(translatedError);
       } else {
         // Navigate to login page in Next.js 15
@@ -204,10 +218,9 @@ function SignupForm() {
         // Clear form
         setEmail('');
         setPassword('');
-        setConfirmPassword('');
       }
     } catch (err) {
-      setError(translateErrorCode('unknown_error'));
+      setError(translateErrorCode('unknown_error', 'auth'));
     } finally {
       setIsLoading(false);
     }
@@ -233,19 +246,137 @@ function SignupForm() {
         required
         disabled={isLoading}
       />
-      <input
-        type="password"
-        value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
-        placeholder="Wiederhole Passwort"
-        required
-        disabled={isLoading}
-      />
       {/* Keep UI text in native language */}
       <button type="submit" disabled={isLoading}>
         {isLoading ? 'Wird angemeldet...' : 'Anmelden'}
       </button>
     </form>
+  );
+}
+```
+
+### Storage Error
+
+```jsx
+import React, { useState, useEffect } from 'react';
+import { setLanguage, translateErrorCode } from 'supabase-error-translator-js';
+import { supabase } from './supabaseClient';
+
+function FileUploader() {
+  const [file, setFile] = useState(null);
+  const [error, setError] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
+
+  useEffect(() => {
+    // Set language
+    setLanguage('es');
+  }, []);
+
+  const handleFileChange = (event) => {
+    setFile(event.target.files);
+    setError(null); // Clear previous errors
+  };
+
+  const handleUpload = async () => {
+    if (!file) {
+      setError('Por favor, selecciona un archivo para subir.'); // Example of a non-Supabase error
+      return;
+    }
+
+    setIsUploading(true);
+    setError(null);
+
+    try {
+      const { data, error: uploadError } = await supabase.storage
+        .from('your-bucket-name') // Replace with your bucket name
+        .upload(`public/${file.name}`, file);
+
+      if (uploadError?.code) {
+        // translate error code if existing
+        const translatedError = translateErrorCode(uploadError.code, 'storage');
+        setError(translatedError);
+      } else {
+        console.log('File uploaded successfully:', data);
+        // Handle success (e.g., show a success message or clear the form)
+        setFile(null);
+      }
+    } catch (err) {
+      // Assuming a general error during the async operation should use unknown_error
+      setError(translateErrorCode('unknown_error', 'storage'));
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
+  return (
+    <div>
+      {error && <div className="error">{error}</div>}
+      <input type="file" onChange={handleFileChange} disabled={isUploading} />
+      <button onClick={handleUpload} disabled={!file || isUploading}>
+        {isUploading ? 'Subiendo...' : 'Subir Archivo'}
+      </button>
+    </div>
+  );
+}
+```
+
+### Realtime Error
+
+```jsx
+import React, { useState, useEffect } from 'react';
+import { setLanguage, translateErrorCode } from 'supabase-error-translator-js';
+import { supabase } from './supabaseClient';
+
+function RealtimeListener() {
+  const [realtimeError, setRealtimeError] = useState(null);
+  const [messages, setMessages] = useState([]); // To show received messages
+
+  useEffect(() => {
+    // Set language
+    setLanguage('fr');
+
+    // Subscribe to a channel
+    const channel = supabase
+      .channel('my-realtime-channel') // Replace with your channel name
+      .on('broadcast', { event: 'my-event' }, (payload) => {
+        console.log('Realtime message received:', payload);
+        setMessages((prevMessages) => [...prevMessages, payload.payload]);
+      })
+      // Error handling for the channel
+      .subscribe((status, err) => {
+        if (status === 'CHANNEL_ERROR') {
+          console.error('Realtime Channel Error:', err);
+          if (err?.code) {
+            // Check for error code
+            // Attempt to translate the Realtime error code
+            const translatedError = translateErrorCode(err.code, 'realtime');
+            setRealtimeError(translatedError);
+          } else {
+            // Fallback for unexpected Realtime error structures
+            setRealtimeError(translateErrorCode('unknown_error', 'realtime'));
+          }
+        } else if (status === 'TIMED_OUT') {
+          // Handle specific Realtime statuses if needed
+          setRealtimeError('Connexion Realtime expirée. Veuillez réessayer.');
+        }
+      });
+
+    // Clean up subscription on component unmount
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, []); // Empty dependency array means this effect runs once on mount
+
+  return (
+    <div>
+      <h2>Messages Realtime</h2>
+      {realtimeError && <div className="error">{realtimeError}</div>}
+      <ul>
+        {messages.map((msg, index) => (
+          <li key={index}>{JSON.stringify(msg)}</li>
+        ))}
+      </ul>
+    </div>
   );
 }
 ```
@@ -266,6 +397,12 @@ The library supports numerous Supabase error codes, including but not limited to
   - Rate limiting errors (channel limits, connection limits, join rate limits)
   - Database errors (CDC stream issues, replication slot problems)
   - System errors (node disconnection, migration failures, counter tracking errors)
+- Storage
+  - Resource errors (bucket/file not found, already exists, etc.)
+  - Authorization errors (invalid tokens, access denied, etc.)
+  - Validation errors (invalid input parameters, formats, etc.)
+  - Service limitations (size restrictions, rate limits, etc.)
+  - Infrastructure errors (database issues, internal errors, etc.)
 
 Each error code is translated according to the specified language.
 
@@ -273,10 +410,21 @@ Each error code is translated according to the specified language.
 
 We’re actively expanding support for additional Supabase error domains. Planned translations include:
 
-- **Database**: Coming soon (pending official documentation).
-- **Storage**: In progress.
+- **Storage**: Done.
 - **Realtime**: Done.
-- **Auth**: Done
+- **Auth**: Done.
+- **Database**: Coming soon.
+- **Functions**: Coming soon.
+
+## Changelog
+
+**Latest Version: 2.0.0 (May 4, 2025)**
+
+- Major restructuring of error codes by service
+- Added support for Storage error codes
+- Enhanced API with service-specific error handling
+
+For detailed release notes and migration guides, see the [full CHANGELOG](CHANGELOG.md).
 
 ## Contributing
 
