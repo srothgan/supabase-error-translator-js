@@ -1,6 +1,6 @@
 {
   "name": "supabase-error-translator-js",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A simple supabase error code translator with ISO language codes",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
