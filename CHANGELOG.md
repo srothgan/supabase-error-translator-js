@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.1.0 - 09.05.2025
+
+### Added
+
+- **Database error support**: Added comprehensive translations for Supabase PostgreSQL and PostgREST database errors
+  - PostgreSQL standard error codes (e.g., 23505 for unique constraint violations)
+  - PostgREST-specific error codes (PGRST series)
+  - Detailed explanations for common database constraints and query failures
+  - Human-readable translations that explain technical errors in user-friendly language
+
 ## 2.0.1 - 04.05.2025
 
 ### FIX

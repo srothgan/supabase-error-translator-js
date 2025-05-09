@@ -20,9 +20,12 @@ A simple JavaScript/TypeScript library for translating Supabase error codes acro
 - [Error Handling and Fallbacks](#error-handling-and-fallbacks)
 - [API Reference](#api-reference)
 - [Examples](#examples)
+
   - [Auth Error](#auth-error)
+  - [Database Error](#database-error)
   - [Storage Error](#storage-error)
   - [Realtime Error](#realtime-error)
+
 - [Supported Error Codes](#supported-error-codes)
 - [Roadmap](#roadmap)
 - [Changelog](#changelog)
@@ -208,7 +211,7 @@ function SignupForm() {
         password,
       });
 
-      if (error?.code) {
+      if (error) {
         // Translate the error code from Supabase
         const translatedError = translateErrorCode(error.code, 'auth');
         setError(translatedError);
@@ -255,6 +258,128 @@ function SignupForm() {
 }
 ```
 
+### Database Error
+
+```jsx
+import React, { useState, useEffect } from 'react';
+import { setLanguage, translateErrorCode } from 'supabase-error-translator-js';
+import { supabase } from './supabaseClient';
+
+function ProductForm() {
+  const [name, setName] = useState('');
+  const [price, setPrice] = useState('');
+  const [description, setDescription] = useState('');
+  const [error, setError] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+
+  useEffect(() => {
+    // Set language to German
+    setLanguage('de');
+  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(null);
+    setSuccessMessage('');
+    setIsSubmitting(true);
+
+    // Basic validation
+    if (!name || !price) {
+      setError('Bitte fülle alle Pflichtfelder aus.');
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      // Attempt to insert a new product into the database
+      const { data, error: dbError } = await supabase
+        .from('products')
+        .insert([
+          {
+            name,
+            price: parseFloat(price),
+            description,
+            created_at: new Date(),
+          },
+        ])
+        .select();
+
+      if (dbError) {
+        // Simply translate the database error code
+        const translatedError = translateErrorCode(dbError.code, 'database');
+        setError(translatedError);
+      } else {
+        // Clear the form and show success message
+        setName('');
+        setPrice('');
+        setDescription('');
+        setSuccessMessage('Produkt erfolgreich gespeichert!');
+      }
+    } catch (err) {
+      // Handle unexpected errors
+      setError(translateErrorCode('unknown_error', 'database'));
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="product-form">
+      <h2>Neues Produkt hinzufügen</h2>
+
+      {error && <div className="error-message">{error}</div>}
+      {successMessage && <div className="success-message">{successMessage}</div>}
+
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="name">Produktname*</label>
+          <input
+            id="name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            disabled={isSubmitting}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="price">Preis (€)*</label>
+          <input
+            id="price"
+            type="number"
+            step="0.01"
+            min="0"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            disabled={isSubmitting}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="description">Beschreibung</label>
+          <textarea
+            id="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            disabled={isSubmitting}
+            rows={4}
+          />
+        </div>
+
+        <button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? 'Wird gespeichert...' : 'Produkt speichern'}
+        </button>
+      </form>
+    </div>
+  );
+}
+
+export default ProductForm;
+```
+
 ### Storage Error
 
 ```jsx
@@ -291,7 +416,7 @@ function FileUploader() {
         .from('your-bucket-name') // Replace with your bucket name
         .upload(`public/${file.name}`, file);
 
-      if (uploadError?.code) {
+      if (uploadError) {
         // translate error code if existing
         const translatedError = translateErrorCode(uploadError.code, 'storage');
         setError(translatedError);
@@ -346,7 +471,7 @@ function RealtimeListener() {
       .subscribe((status, err) => {
         if (status === 'CHANNEL_ERROR') {
           console.error('Realtime Channel Error:', err);
-          if (err?.code) {
+          if (err) {
             // Check for error code
             // Attempt to translate the Realtime error code
             const translatedError = translateErrorCode(err.code, 'realtime');
@@ -403,6 +528,16 @@ The library supports numerous Supabase error codes, including but not limited to
   - Validation errors (invalid input parameters, formats, etc.)
   - Service limitations (size restrictions, rate limits, etc.)
   - Infrastructure errors (database issues, internal errors, etc.)
+- Database
+  - Connection errors (server disconnections, failed connections, etc.)
+  - Data type errors (type mismatches, invalid conversions, overflow errors)
+  - Constraint violations (unique, foreign key, not-null, check constraints)
+  - Access and authentication errors (permission denied, authentication failures)
+  - Resource limitations (memory constraints, connection limits, disk space)
+  - Query syntax issues (syntax errors, invalid object names, ambiguous references)
+  - Transaction errors (serialization failures, deadlocks, aborted transactions)
+  - PostgREST-specific errors (JWT validation, schema visibility, API request issues)
+  - Server-side errors (assertion failures, resource unavailability, timeouts)
 
 Each error code is translated according to the specified language.
 
@@ -413,16 +548,14 @@ We’re actively expanding support for additional Supabase error domains. Planne
 - **Storage**: Done.
 - **Realtime**: Done.
 - **Auth**: Done.
-- **Database**: Coming soon.
+- **Database**: Done.
 - **Functions**: Coming soon.
 
 ## Changelog
 
-**Latest Version: 2.0.0 (May 4, 2025)**
+**Latest Version: 2.1.0 - 09.05.2024**
 
-- Major restructuring of error codes by service
-- Added support for Storage error codes
-- Enhanced API with service-specific error handling
+- Added support for database errors (PostgreSQL and PostgREST)
 
 For detailed release notes and migration guides, see the [full CHANGELOG](CHANGELOG.md).
 
