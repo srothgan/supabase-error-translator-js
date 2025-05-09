@@ -195,7 +195,130 @@ export default {
       SlowDown: 'Die Anfragerate ist zu hoch und wurde gedrosselt',
     },
     // Database-specific errors
-    database: {},
+    database: {
+      '08000':
+        'Die Verbindung zum Datenbankserver wurde unterbrochen oder konnte nicht hergestellt werden.',
+      '08003': 'Die verwendete Datenbankverbindung ist nicht mehr aktiv.',
+      '08006': 'Der Versuch, eine Verbindung zur Datenbank herzustellen, ist fehlgeschlagen.',
+      '0P000': 'Der angegebene Datenbankname existiert nicht.',
+      '22000':
+        'Allgemeiner Fehler bei der Datenverarbeitung; prüfen Sie die spezifische Meldung für Details.',
+      '22001': 'Der eingegebene Text ist zu lang für die Datenbankspalte.',
+      '22002':
+        'Ein erforderlicher Wert fehlte beim Versuch, Daten einzufügen oder zu aktualisieren.',
+      '22003': 'Die eingegebene Zahl ist zu groß oder zu klein für die Datenbankspalte.',
+      '22004': 'Ein Nullwert wurde in einem unzulässigen Kontext verwendet.',
+      '22005': 'Ein ungültiges Zeichen wurde in einem numerischen Wert gefunden.',
+      '22007': 'Das angegebene Datums- oder Zeitformat ist ungültig.',
+      '22008': 'Der Datums- oder Zeitwert liegt außerhalb des gültigen Bereichs.',
+      '22012': 'Es wurde versucht, eine Zahl durch Null zu teilen.',
+      '22018': 'Für den Zeichensatz wurde ein ungültiger Zeichenwert gefunden.',
+      '22019': 'Ein ungültiges Escape-Zeichen wurde gefunden.',
+      '22021': 'Für den angegebenen Zeichensatz wurde ein ungültiger Zeichenwert gefunden.',
+      '22023': 'Ein ungültiger Parameterwert wurde verwendet.',
+      '22025': 'Eine ungültige Escape-Sequenz wurde gefunden.',
+      '22026': 'Die Zeichenfolgedaten haben eine ungültige Länge für die Operation.',
+      '22P01': 'Eine Gleitkomma-Ausnahme ist aufgetreten (z.B. Überlauf, Unterlauf).',
+      '22P02':
+        'Der angegebene Text konnte nicht in den erforderlichen Datentyp konvertiert werden.',
+      '22P03': 'Ein ungültiger Datums-/Zeitwert wurde angegeben.',
+      '22P04': 'Ein Nullwert wurde verwendet, wo er nicht erlaubt ist.',
+      '22P05': 'Für ein XML-Dokument wurde ein ungültiger Wert angegeben.',
+      '23000': 'Eine Integritätsbedingung wurde verletzt.',
+      '23502': 'Ein Pflichtfeld wurde leer gelassen (verletzt NOT-NULL-Bedingung).',
+      '23503':
+        'Der verknüpfte Datensatz, auf den Sie verwiesen haben, existiert nicht (verletzt Fremdschlüsselbedingung).',
+      '23505':
+        'Ein Datensatz mit diesen Informationen existiert bereits (verletzt UNIQUE-Bedingung).',
+      '23514':
+        'Die eingegebenen Daten erfüllen nicht die erforderlichen Bedingungen (verletzt CHECK-Bedingung).',
+      '25000': 'Der aktuelle Transaktionsstatus ist für die Operation ungültig.',
+      '25P02':
+        'Die aktuelle Transaktion wurde abgebrochen; Befehle werden bis zum Ende des Transaktionsblocks ignoriert.',
+      '28000': 'Die Authentifizierung für den angegebenen Benutzer ist fehlgeschlagen.',
+      '28P01': 'Authentifizierung fehlgeschlagen: Ungültiges Passwort.',
+      '3D000': 'Die angegebene Datenbank existiert nicht.',
+      '3F000': 'Das angegebene Schema existiert nicht.',
+      '40001':
+        'Ein Serialisierungsfehler ist aufgrund einer gleichzeitigen Aktualisierung aufgetreten (bitte erneut versuchen).',
+      '40P01': 'Ein Deadlock wurde erkannt; die Transaktion wurde zurückgesetzt.',
+      '42000': 'Ein Syntaxfehler oder eine Zugriffsregelverletzung ist aufgetreten.',
+      '42501':
+        'Sie verfügen nicht über die erforderlichen Berechtigungen, um diese Aktion auszuführen.',
+      '42601':
+        'Es ist ein Fehler in der Datenbankabfrage oder im Befehl aufgetreten (Syntaxfehler).',
+      '42602': 'Für ein Datenbankobjekt wurde ein ungültiger Name verwendet.',
+      '42701': 'Ein doppelter Spaltenname wurde verwendet.',
+      '42702': 'Ein mehrdeutiger Spaltenverweis wurde verwendet.',
+      '42703': 'Die Spalte, auf die Sie zugreifen möchten, existiert nicht.',
+      '42704':
+        'Das Datenbankobjekt (wie eine Sequenz, ein Typ oder eine Funktion) existiert nicht.',
+      '42710': 'Ein Objekt mit diesem Namen existiert bereits (doppeltes Objekt).',
+      '42712': 'Ein mehrdeutiger Alias wurde verwendet.',
+      '42803': 'Ein Gruppierungsfehler ist in der Abfrage aufgetreten.',
+      '42804': 'Der angegebene Datentyp ist nicht mit der Spalte oder Operation kompatibel.',
+      '42830': 'Eine ungültige Fremdschlüsseldefinition wurde erstellt.',
+      '42883':
+        'Die Funktion oder der Operator, den Sie verwenden möchten, existiert nicht mit den angegebenen Argumenten.',
+      '42P01': 'Die Tabelle, auf die Sie zugreifen möchten, existiert nicht.',
+      '42P02': 'Ein in der Abfrage verwendeter Parameter ist nicht definiert.',
+      '42P07': 'Eine Tabelle mit diesem Namen existiert bereits.',
+      '42P18':
+        'Ein unbestimmter Datentyp wurde verwendet, wo ein spezifischer Typ erforderlich ist.',
+      '53000': 'Der Datenbankserver hat Ressourcenbeschränkungen.',
+      '53100': 'Dem Datenbankserver ist der Speicherplatz ausgegangen.',
+      '53200': 'Dem Datenbankserver ist der Arbeitsspeicher ausgegangen.',
+      '53300': 'Die maximal zulässige Anzahl von Datenbankverbindungen wurde erreicht.',
+      '54000':
+        'Ein Programmlimit wurde überschritten (z.B. zu viele Spalten, zu komplexe Abfrage).',
+      '54001': 'Eine Anweisung war zu komplex.',
+      '54011': 'Es wurden zu viele Spalten angegeben.',
+      '54023': 'Für die Operation wurde zu viel Speicher angefordert.',
+      '55000':
+        'Das Datenbankobjekt befindet sich nicht im korrekten Zustand für die angeforderte Operation.',
+      '55006': 'Das Datenbankobjekt wird derzeit von einem anderen Prozess verwendet.',
+      '55P03': 'Die Sperre, die Sie erwerben möchten, ist nicht verfügbar.',
+      '57014': 'Die Abfrage wurde vom Benutzer oder einem Administrator abgebrochen.',
+      '58P01': 'Auf eine erforderliche Datei oder Ressource konnte nicht zugegriffen werden.',
+      P0001:
+        'Ein benutzerdefinierter Fehler ist gemäß Datenbankdefinition aufgetreten (Details in der Meldung prüfen).',
+      P0002: 'Ihre Abfrage lieferte keine Ergebnisse, obwohl mindestens eines erwartet wurde.',
+      P0003:
+        'Eine Unterabfrage, die ein einzelnes Ergebnis erwartet, hat zu viele Zeilen zurückgegeben.',
+      P0004: 'Ein Statuscode weist auf einen Assertionsfehler hin.',
+      PGRST000: 'Verbindung zur Datenbank konnte nicht hergestellt werden.',
+      PGRST001: 'Die Datenbankrolle für die Verbindung ist ungültig.',
+      PGRST002: 'Auf das Datenbankschema kann nicht zugegriffen werden.',
+      PGRST100: 'Der Schema-Cache konnte nicht geladen werden.',
+      PGRST101: 'Das JWT-Token ist ungültig oder abgelaufen.',
+      PGRST102: 'Das JWT-Secret fehlt oder ist falsch.',
+      PGRST103:
+        'Der JWT-Rollenanspruch (role claim) ist ungültig oder konnte nicht analysiert werden.',
+      PGRST105: 'Die im JWT angegebene Datenbankrolle existiert nicht.',
+      PGRST106: 'Die Serverkonfiguration ist ungültig.',
+      PGRST107: 'Der angeforderte Medientyp wird nicht unterstützt.',
+      PGRST108: 'Das angeforderte Schema ist nicht freigegeben (exposed).',
+      PGRST109: 'Die angeforderte Tabelle/Sicht ist im Schema nicht freigegeben (exposed).',
+      PGRST110: 'Die angeforderte Funktion ist nicht freigegeben (exposed) oder existiert nicht.',
+      PGRST111:
+        'Es wurde versucht, eine veränderliche (volatile) Funktion mit einer GET-Anfrage aufzurufen.',
+      PGRST112: 'Der Anfragekörper (request body) ist fehlerhaft oder nicht analysierbar.',
+      PGRST113: 'Der Abfrageparameter ist ungültig oder fehlerhaft.',
+      PGRST114: 'Der HTTP-Header ist ungültig oder fehlerhaft.',
+      PGRST116: 'Die Anfrage verstößt gegen eine Sicherheitsrichtlinie (z.B. RLS).',
+      PGRST117: 'Die angeforderte Ressource konnte nicht gefunden werden.',
+      PGRST200: 'Der Abfragestring (query string) enthält einen ungültigen Parameter.',
+      PGRST201: 'Der Anfragekörper (request body) fehlt oder ist für die Operation fehlerhaft.',
+      PGRST202: 'Der angeforderte Bereich (range) ist nicht erfüllbar.',
+      PGRST203: 'Die Anfrage enthält einen ungültigen Filter- oder Sortierparameter.',
+      PGRST204:
+        'Die angegebene Spalte konnte im Schema-Cache der Tabelle nicht gefunden werden; prüfen Sie die Schema-Freigabe oder die Existenz der Spalte.',
+      PGRST300: 'Bei einer Masseneinfügung oder -aktualisierung ist ein Fehler aufgetreten.',
+      PGRST301: 'Die angeforderte Aktion ist für die Ressource nicht zulässig.',
+      PGRST302:
+        'Die Anzahl der von der Operation betroffenen Zeilen entspricht nicht den Erwartungen.',
+    },
+
     // Functions-specific errors
     functions: {},
   },
