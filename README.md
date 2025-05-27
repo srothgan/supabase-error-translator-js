@@ -1,6 +1,6 @@
 # Supabase Error Translator JS
 
-A simple JavaScript/TypeScript library for translating Supabase error codes across multiple languages.
+A comprehensive Supabase error code translator supporting 9 languages with ISO language codes
 
 > **DISCLAIMER:** This is a private project and is NOT officially associated with, endorsed by, or affiliated with Supabase in any way. This project is maintained independently.
 
@@ -36,12 +36,19 @@ A simple JavaScript/TypeScript library for translating Supabase error codes acro
 
 This library provides translations for Supabase error codes and messages in multiple languages. It's designed to help developers create a better user experience by displaying localized error messages to users based on their preferred language.
 
-Currently supports the following languages:
+## Supported Languages
 
-- English (en)
-- German (de)
-- Spanish (es)
-- French (fr)
+| Language   | Code | Native Name |
+| ---------- | ---- | ----------- |
+| English    | `en` | English     |
+| German     | `de` | Deutsch     |
+| Spanish    | `es` | Español     |
+| French     | `fr` | Français    |
+| Japanese   | `jp` | 日本語      |
+| Korean     | `kr` | 한국어      |
+| Polish     | `pl` | Polski      |
+| Portuguese | `pt` | Português   |
+| Chinese    | `cn` | 中文        |
 
 ## Installation
 
@@ -94,7 +101,7 @@ console.log(currentLang); // e.g., 'en', 'de', etc.
 
 // Get all supported languages
 const supportedLangs = getSupportedLanguages();
-console.log(supportedLangs); // ['en', 'de', 'es', 'fr']
+console.log(supportedLangs); // ['en', 'de', 'es', 'fr', 'jp', 'kr', 'pl', 'pt', 'cn']
 ```
 
 ### Override Language for Specific Translations
@@ -135,7 +142,7 @@ The `service` parameter allows the system to correctly handle cases where the sa
 Sets the current language for translations. If "auto" is passed, it will attempt to detect the browser's language.
 
 - **Parameters:**
-  - `lang`: A supported ISO language code ('en', 'de', 'es', 'fr') or "auto"
+  - `lang`: A supported ISO language code ('en', 'de', 'es', 'fr', 'jp', 'kr', 'pl', 'pt', 'cn') or "auto"
 - **Behavior:**
   - If an unsupported language is provided, falls back to English ('en')
 
@@ -543,17 +550,34 @@ Each error code is translated according to the specified language.
 
 ## Roadmap
 
-We’re actively expanding support for additional Supabase error domains. Planned translations include:
+We're actively expanding support for additional Supabase error domains and languages. Current status:
 
-- **Storage**: Done.
-- **Realtime**: Done.
-- **Auth**: Done.
-- **Database**: Done.
-- **Functions**: Coming soon.
+**Error Domains:**
+
+- **Storage**: ✅ Done
+- **Realtime**: ✅ Done
+- **Auth**: ✅ Done
+- **Database**: ✅ Done
+- **Functions**: 🔄 Coming soon
+
+**Language Support:**
+
+- **Core Languages**: ✅ 9 languages now supported
+- **Additional Languages**: 🔄 Open to community contributions for more languages
 
 ## Changelog
 
-**Latest Version: 2.1.0 - 09.05.2024**
+**Latest Version: 2.2.0 - 27.05.2025**
+
+- Added support for 5 new languages:
+  - Japanese (jp) - 日本語
+  - Korean (kr) - 한국어
+  - Polish (pl) - Polski
+  - Portuguese (pt) - Português
+  - Chinese (cn) - 中文
+- Now supporting 9 total languages for comprehensive global coverage
+
+**Version: 2.1.0 - 09.05.2024**
 
 - Added support for database errors (PostgreSQL and PostgREST)
 

@@ -59,6 +59,9 @@ pnpm install
 # Run tests
 pnpm test
 
+# Build the project
+pnpm build
+
 # Run linting (with auto-fix)
 pnpm run lint -- --fix
 
