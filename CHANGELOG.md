@@ -1,5 +1,24 @@
 # Changelog
 
+## 2.2.0 - 27.05.2025
+
+### Added
+
+- **Expanded language support**: Added support for 5 new languages, bringing total language support to 9 languages:
+  - Japanese (jp) - 日本語
+  - Korean (kr) - 한국어
+  - Polish (pl) - Polski
+  - Portuguese (pt) - Português
+  - Chinese (cn) - 中文
+- **Comprehensive global coverage**: Now supporting comprehensive internationalization with ISO language codes
+- **Enhanced localization**: All existing error codes now translated across all 9 supported languages
+
+### Improved
+
+- Updated documentation with complete language support table
+- Enhanced examples showing auto-detection of browser language
+- Improved API reference with better parameter descriptions
+
 ## 2.1.0 - 09.05.2025
 
 ### Added
