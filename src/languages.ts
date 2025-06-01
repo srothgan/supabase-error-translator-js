@@ -3,7 +3,7 @@ import { SUPPORTED_LANGUAGES } from './types';
 
 /**
  * Type guard to ensure a string is a SupportedLanguage
- * @param lang iso code
+ * @param lang ISO language code
  */
 export function isSupportedLanguage(lang: string): lang is SupportedLanguage {
   return (SUPPORTED_LANGUAGES as readonly string[]).includes(lang);

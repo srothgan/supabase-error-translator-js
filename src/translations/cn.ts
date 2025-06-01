@@ -48,7 +48,7 @@ export default {
       mfa_phone_verify_not_enabled: '通过电话因子登录和验证新电话因子已被禁用。',
       mfa_totp_enroll_not_enabled: 'MFA TOTP因子的注册已被禁用。',
       mfa_totp_verify_not_enabled: '通过TOTP因子登录和验证新TOTP因子已被禁用。',
-      mfa_verification_failed: 'MFA挑战无法验证——错误的TOTP代码。',
+      mfa_verification_failed: 'MFA挑战无法验证-错误的TOTP代码。',
       mfa_verification_rejected: '进一步的MFA验证被拒绝。仅在MFA验证尝试钩子返回拒绝决定时返回。',
       mfa_verified_factor_exists:
         '用户已存在已验证的电话因子。请取消注册现有的已验证电话因子以继续。',

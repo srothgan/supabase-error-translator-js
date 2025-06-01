@@ -6,7 +6,7 @@ export default {
   services: {
     // Auth-specific errors
     auth: {
-      anonymous_provider_disabled: 'Anonymous sign‑ins are disabled.',
+      anonymous_provider_disabled: 'Anonymous sign-ins are disabled.',
       bad_code_verifier:
         'Returned from the PKCE flow where the provided code verifier does not match the expected one. Indicates a bug in the implementation of the client library.',
       bad_json: 'Usually used when the HTTP body of the request is not valid JSON.',
@@ -60,7 +60,7 @@ export default {
       mfa_totp_enroll_not_enabled: 'Enrollment of MFA TOTP factors is disabled.',
       mfa_totp_verify_not_enabled:
         'Login via TOTP factors and verification of new TOTP factors is disabled.',
-      mfa_verification_failed: 'MFA challenge could not be verified -- wrong TOTP code.',
+      mfa_verification_failed: 'MFA challenge could not be verified - wrong TOTP code.',
       mfa_verification_rejected:
         'Further MFA verification is rejected. Only returned if the MFA verification attempt hook returns a reject decision.',
       mfa_verified_factor_exists:
@@ -205,7 +205,7 @@ export default {
         'Error when trying to find a counter to track rate limits for a tenant. Contact support for further instructions.',
       UnhandledProcessMessage:
         'Unhandled message received by a Realtime process. Contact support for further instructions.',
-      UnknownError: 'An unknown error occurred. Contact support for further instructions',
+      UnknownError: 'An unknown error occurred. Contact support for further instructions.',
     },
     // Storage-specific errors
     storage: {
