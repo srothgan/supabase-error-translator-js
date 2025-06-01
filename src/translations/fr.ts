@@ -13,7 +13,7 @@ export default {
       bad_oauth_callback: 'Le callback OAuth est incomplet.',
       bad_oauth_state: 'Le paramètre OAuth state a un format incorrect.',
       captcha_failed: 'La vérification CAPTCHA a échoué.',
-      conflict: 'Conflit de base de données – requêtes concurrentes.',
+      conflict: 'Conflit de base de données : requêtes concurrentes.',
       email_address_invalid: 'Adresse e-mail invalide.',
       email_address_not_authorized: "Envoi d'e-mail non autorisé pour cette adresse.",
       email_conflict_identity_not_deletable:
@@ -60,7 +60,7 @@ export default {
       provider_disabled: 'Fournisseur OAuth désactivé.',
       provider_email_needs_verification: "Une vérification d'e-mail est requise après OAuth.",
       reauthentication_needed: 'Nouvelle authentification requise.',
-      reauthentication_not_valid: 'Ré-authentification invalide – code incorrect.',
+      reauthentication_not_valid: 'Ré-authentification invalide : code incorrect.',
       refresh_token_not_found: 'Jeton de rafraîchissement introuvable.',
       refresh_token_already_used: 'Jeton de rafraîchissement déjà utilisé.',
       request_timeout: 'La requête a pris trop de temps. Réessayez.',

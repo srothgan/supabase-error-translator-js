@@ -6,7 +6,7 @@ A comprehensive Supabase error code translator supporting 9 languages with ISO l
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![npm version](https://img.shields.io/npm/v/supabase-error-translator-js)](https://www.npmjs.com/package/supabase-error-translator-js)
-[![npm downloads](https://img.shields.io/npm/dm/supabase-error-translator-js.svg)](https://www.npmjs.com/package/supabase-error-translator-js)
+[![npm downloads](https://img.shields.io/npm/dt/supabase-error-translator-js.svg)](https://www.npmjs.com/package/supabase-error-translator-js)
 
 ## Table of Contents
 

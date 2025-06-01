@@ -1,4 +1,4 @@
-/* Portugese translations */
+/* Portuguese translations */
 
 export default {
   // Fallback Error Code
@@ -6,17 +6,17 @@ export default {
   services: {
     // Auth-specific errors
     auth: {
-      anonymous_provider_disabled: 'Login anônimo está desabilitado.',
+      anonymous_provider_disabled: 'O login anônimo está desabilitado.',
       bad_code_verifier:
         'Retornado do fluxo PKCE onde o verificador de código fornecido não corresponde ao esperado. Indica um bug na implementação da biblioteca cliente.',
       bad_json: 'Geralmente usado quando o corpo HTTP da solicitação não é JSON válido.',
-      bad_jwt: 'JWT enviado no cabeçalho Authorization não é válido.',
+      bad_jwt: 'O JWT enviado no cabeçalho Authorization não é válido.',
       bad_oauth_callback:
         'Callback OAuth do provedor para Auth não possui todos os atributos necessários (state). Indica um problema com o provedor OAuth ou implementação da biblioteca cliente.',
       bad_oauth_state:
         'Estado OAuth (dados ecoados de volta pelo provedor OAuth para Supabase Auth) não está no formato correto. Indica um problema com a integração do provedor OAuth.',
       captcha_failed:
-        'Desafio CAPTCHA não pôde ser verificado com o provedor CAPTCHA. Verifique sua integração CAPTCHA.',
+        'O desafio CAPTCHA não pôde ser verificado com o provedor CAPTCHA. Verifique sua integração CAPTCHA.',
       conflict:
         'Conflito geral do banco de dados, como solicitações simultâneas em recursos que não devem ser modificados simultaneamente. Pode ocorrer quando você tem muitas solicitações de atualização de sessão sendo disparadas ao mesmo tempo para um usuário. Verifique seu aplicativo para problemas de concorrência e, se detectado, recue exponencialmente.',
       email_address_invalid:
@@ -25,10 +25,10 @@ export default {
         'O envio de email não é permitido para este endereço, pois seu projeto está usando o serviço SMTP padrão. Emails só podem ser enviados para membros da sua organização Supabase. Se você quiser enviar emails para outros, configure um provedor SMTP personalizado.',
       email_conflict_identity_not_deletable:
         'Desvincular esta identidade faz com que a conta do usuário mude para um endereço de email que já é usado por outra conta de usuário. Indica um problema onde o usuário tem duas contas diferentes usando endereços de email primários diferentes. Você pode precisar migrar dados do usuário para uma de suas contas neste caso.',
-      email_exists: 'Endereço de email já existe no sistema.',
+      email_exists: 'O endereço de email já existe no sistema.',
       email_not_confirmed:
-        'Login não é permitido para este usuário, pois o endereço de email não está confirmado.',
-      email_provider_disabled: 'Registros estão desabilitados para email e senha.',
+        'O login não é permitido para este usuário, pois o endereço de email não está confirmado.',
+      email_provider_disabled: 'Os registros estão desabilitados para email e senha.',
       flow_state_expired:
         'Estado do fluxo PKCE ao qual a solicitação da API se relaciona expirou. Peça ao usuário para fazer login novamente.',
       flow_state_not_found:
@@ -45,7 +45,7 @@ export default {
         'Identidade à qual a chamada da API se relaciona não existe, como quando uma identidade é desvinculada ou excluída.',
       insufficient_aal:
         'Para chamar esta API, o usuário deve ter um Nível de Garantia de Autenticador mais alto. Para resolver, peça ao usuário para resolver um desafio MFA.',
-      invite_not_found: 'Convite expirou ou já foi usado.',
+      invite_not_found: 'O convite expirou ou já foi usado.',
       invalid_credentials: 'Credenciais de login ou tipo de concessão não reconhecidos.',
       manual_linking_disabled:
         'Chamar as APIs supabase.auth.linkUser() e relacionadas não está habilitado no servidor Auth.',
@@ -62,7 +62,7 @@ export default {
       mfa_totp_enroll_not_enabled: 'Inscrição de fatores MFA TOTP está desabilitada.',
       mfa_totp_verify_not_enabled:
         'Login via fatores TOTP e verificação de novos fatores TOTP está desabilitado.',
-      mfa_verification_failed: 'Desafio MFA não pôde ser verificado -- código TOTP incorreto.',
+      mfa_verification_failed: 'Desafio MFA não pôde ser verificado - código TOTP incorreto.',
       mfa_verification_rejected:
         'Verificação MFA adicional é rejeitada. Retornado apenas se o hook de tentativa de verificação MFA retorna uma decisão de rejeição.',
       mfa_verified_factor_exists:

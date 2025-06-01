@@ -11,9 +11,9 @@ export default {
       bad_json: 'Der Anfragekörper ist kein gültiges JSON.',
       bad_jwt: 'Das JWT im Authorization-Header ist ungültig oder abgelaufen.',
       bad_oauth_callback: 'Der OAuth-Callback enthält nicht alle erforderlichen Attribute.',
-      bad_oauth_state: 'Der OAuth-State hat das falsche Format.',
+      bad_oauth_state: 'Der OAuth-State hat ein falsches Format.',
       captcha_failed: 'Die CAPTCHA-Prüfung ist fehlgeschlagen.',
-      conflict: 'Datenbankkonflikt – gleichzeitige Anfragen.',
+      conflict: 'Datenbankkonflikt durch gleichzeitige Anfragen.',
       email_address_invalid: 'Ungültige E-Mail-Adresse.',
       email_address_not_authorized: 'E-Mail-Versand für diese Adresse ist nicht erlaubt.',
       email_conflict_identity_not_deletable:
@@ -155,7 +155,7 @@ export default {
       UnhandledProcessMessage:
         'Nicht behandelte Nachricht von einem Realtime-Prozess empfangen. Kontaktieren Sie den Support für weitere Anweisungen.',
       UnknownError:
-        'Ein unbekannter Fehler ist aufgetreten. Kontaktieren Sie den Support für weitere Anweisungen',
+        'Ein unbekannter Fehler ist aufgetreten. Kontaktieren Sie den Support für weitere Anweisungen.',
     },
     // Storage-specific errors
     storage: {
@@ -192,7 +192,7 @@ export default {
       S3MaximumCredentialsLimit: 'Die maximale Anzahl an Anmeldeinformationen wurde erreicht.',
       InvalidChecksum: 'Die Prüfsumme der Entität stimmt nicht überein.',
       MissingPart: 'Ein Teil der Entität fehlt.',
-      SlowDown: 'Die Anfragerate ist zu hoch und wurde gedrosselt',
+      SlowDown: 'Die Anfragerate ist zu hoch und wurde gedrosselt.',
     },
     // Database-specific errors
     database: {

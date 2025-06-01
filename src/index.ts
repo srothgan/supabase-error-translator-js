@@ -6,7 +6,7 @@ let currentLanguage: SupportedLanguage = 'en';
 
 /**
  * Set the current language. Pass a supported ISO code or "auto".
- * Falls back to English if the given code (or auto‐detect) isn't supported.
+ * Falls back to English if the given code (or auto-detect) isn't supported.
  */
 export function setLanguage(lang: SupportedLanguage | 'auto'): void {
   let resolved: SupportedLanguage;
@@ -23,7 +23,7 @@ export function setLanguage(lang: SupportedLanguage | 'auto'): void {
 
 /**
  * Map a Supabase error code (which may be empty or undefined)
- * to a user‐friendly message, with an industry‐standard fallback chain:
+ * to a user-friendly message, with an industry-standard fallback chain:
  *   1) Target language/service/code
  *   2) English/service/code
  *   3) Target language/unknown_error
@@ -34,7 +34,7 @@ export function translateErrorCode(
   service: ErrorService,
   lang?: SupportedLanguage | 'auto',
 ): string {
-  // — Auto‐normalize blank codes to "unknown_error"
+  // Auto-normalize blank codes to "unknown_error"
   const key = code?.trim() || 'unknown_error';
 
   // determine target language without mutating currentLanguage

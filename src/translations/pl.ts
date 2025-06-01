@@ -62,7 +62,7 @@ export default {
       mfa_totp_verify_not_enabled:
         'Logowanie przez czynniki TOTP i weryfikacja nowych czynników TOTP jest wyłączona.',
       mfa_verification_failed:
-        'Wyzwanie MFA nie mogło zostać zweryfikowane -- nieprawidłowy kod TOTP.',
+        'Wyzwanie MFA nie mogło zostać zweryfikowane - nieprawidłowy kod TOTP.',
       mfa_verification_rejected:
         'Dalsza weryfikacja MFA została odrzucona. Zwracane tylko jeśli hook próby weryfikacji MFA zwraca decyzję odrzucenia.',
       mfa_verified_factor_exists:

@@ -59,7 +59,7 @@ export default {
       mfa_totp_enroll_not_enabled: 'MFA TOTP 요소 등록이 비활성화되었습니다.',
       mfa_totp_verify_not_enabled:
         'TOTP 요소를 통한 로그인 및 새 TOTP 요소 확인이 비활성화되었습니다.',
-      mfa_verification_failed: 'MFA 챌린지를 확인할 수 없습니다 -- 잘못된 TOTP 코드.',
+      mfa_verification_failed: 'MFA 챌린지를 확인할 수 없습니다 - 잘못된 TOTP 코드.',
       mfa_verification_rejected:
         'MFA 확인이 더 이상 거부됩니다. MFA 확인 시도 후크가 거부 결정을 반환하는 경우에만 반환됩니다.',
       mfa_verified_factor_exists:

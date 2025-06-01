@@ -60,7 +60,7 @@ export default {
       mfa_totp_enroll_not_enabled: 'MFA TOTPファクターの登録が無効になっています。',
       mfa_totp_verify_not_enabled:
         'TOTPファクターによるログインと新しいTOTPファクターの検証が無効になっています。',
-      mfa_verification_failed: 'MFAチャレンジを検証できませんでした -- 間違ったTOTPコードです。',
+      mfa_verification_failed: 'MFAチャレンジを検証できませんでした - 間違ったTOTPコードです。',
       mfa_verification_rejected:
         'さらなるMFA検証が拒否されました。MFA検証試行フックが拒否決定を返した場合にのみ返されます。',
       mfa_verified_factor_exists:
