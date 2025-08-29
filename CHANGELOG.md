@@ -1,5 +1,42 @@
 # Changelog
 
+## 3.0.0 - 29.08.2025
+
+### Breaking Changes
+
+- **🚨 MIGRATED TO PROPER ISO 639-1 LANGUAGE CODES**: Language codes now follow international standards
+  - `jp` → `ja` (Japanese)
+  - `kr` → `ko` (Korean)
+  - `cn` → `zh` (Chinese)
+  - **Migration required**: Update all usage of `'jp'|'kr'|'cn'` to `'ja'|'ko'|'zh'`
+
+### Fixed
+
+- **API behavior consistency**: `translateErrorCode()` without `lang` parameter now correctly uses `currentLanguage` instead of browser detection, aligning with documented behavior
+- **Enhanced type safety**: Language codes now fully compliant with ISO 639-1 standards
+
+### Improved
+
+- **Standards compliance**: All language codes now follow proper ISO 639-1 international standards
+- **Documentation**: Updated all examples and API references to use new language codes
+- **No translation loss**: All existing translations maintained with new language codes
+
+### Migration Guide
+
+Update your language code usage:
+
+```typescript
+// Before (v2.x)
+setLanguage('jp'); // Japanese
+setLanguage('kr'); // Korean
+setLanguage('cn'); // Chinese
+
+// After (v3.0.0)
+setLanguage('ja'); // Japanese
+setLanguage('ko'); // Korean
+setLanguage('zh'); // Chinese
+```
+
 ## 2.2.0 - 27.05.2025
 
 ### Added

@@ -11,5 +11,5 @@ export type TranslationStructure = {
   };
 };
 
-export const SUPPORTED_LANGUAGES = ['en', 'de', 'es', 'fr', 'jp', 'kr', 'pl', 'pt', 'cn'] as const;
+export const SUPPORTED_LANGUAGES = ['en', 'de', 'es', 'fr', 'ja', 'ko', 'pl', 'pt', 'zh'] as const;
 export type SupportedLanguage = (typeof SUPPORTED_LANGUAGES)[number];

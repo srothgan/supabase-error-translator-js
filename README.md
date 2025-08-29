@@ -44,11 +44,11 @@ This library provides translations for Supabase error codes and messages in mult
 | German     | `de` | Deutsch     |
 | Spanish    | `es` | Español     |
 | French     | `fr` | Français    |
-| Japanese   | `jp` | 日本語      |
-| Korean     | `kr` | 한국어      |
+| Japanese   | `ja` | 日本語      |
+| Korean     | `ko` | 한국어      |
 | Polish     | `pl` | Polski      |
 | Portuguese | `pt` | Português   |
-| Chinese    | `cn` | 中文        |
+| Chinese    | `zh` | 中文        |
 
 ## Installation
 
@@ -101,7 +101,7 @@ console.log(currentLang); // e.g., 'en', 'de', etc.
 
 // Get all supported languages
 const supportedLangs = getSupportedLanguages();
-console.log(supportedLangs); // ['en', 'de', 'es', 'fr', 'jp', 'kr', 'pl', 'pt', 'cn']
+console.log(supportedLangs); // ['en', 'de', 'es', 'fr', 'ja', 'ko', 'pl', 'pt', 'zh']
 ```
 
 ### Override Language for Specific Translations
@@ -142,7 +142,7 @@ The `service` parameter allows the system to correctly handle cases where the sa
 Sets the current language for translations. If "auto" is passed, it will attempt to detect the browser's language.
 
 - **Parameters:**
-  - `lang`: A supported ISO language code ('en', 'de', 'es', 'fr', 'jp', 'kr', 'pl', 'pt', 'cn') or "auto"
+  - `lang`: A supported ISO language code ('en', 'de', 'es', 'fr', 'ja', 'ko', 'pl', 'pt', 'zh') or "auto"
 - **Behavior:**
   - If an unsupported language is provided, falls back to English ('en')
 
@@ -567,7 +567,17 @@ We're actively expanding support for additional Supabase error domains and langu
 
 ## Changelog
 
-**Latest Version: 2.2.0 - 27.05.2025**
+**Latest Version: 3.0.0 - 29.08.2025**
+
+- **🚨 BREAKING CHANGE: Migrated to proper ISO 639-1 language codes**
+  - `jp` → `ja` (Japanese)
+  - `kr` → `ko` (Korean)
+  - `cn` → `zh` (Chinese)
+- Fixed behavior: `translateErrorCode()` without `lang` parameter now correctly uses `currentLanguage` instead of browser detection
+- All existing translations maintained with new language codes
+- Improved compliance with international standards
+
+**Version: 2.2.0 - 27.05.2025**
 
 - Added support for 5 new languages:
   - Japanese (jp) - 日本語

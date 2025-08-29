@@ -37,9 +37,14 @@ export function translateErrorCode(
   // Auto-normalize blank codes to "unknown_error"
   const key = code?.trim() || 'unknown_error';
 
-  // determine target language without mutating currentLanguage
+  // Determine target language without mutating currentLanguage
+  // - undefined => use currentLanguage (as per README contract)
+  // - 'auto'    => detect via browser
+  // - otherwise => use provided if supported, else 'en'
   let target: SupportedLanguage;
-  if (lang === undefined || lang === 'auto') {
+  if (lang === undefined) {
+    target = currentLanguage;
+  } else if (lang === 'auto') {
     target = detectBrowserLanguage();
   } else {
     target = isSupportedLanguage(lang) ? lang : 'en';
