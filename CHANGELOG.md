@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.0.1 - 30.08.2025
+
+### Fixed
+
+- Clean build output before compiling to remove stale translation bundles left over from ISO code migration
+  - Added prebuild step to delete `dist` before `tsc` (using `rimraf`)
+  - Removes old `cn`/`jp`/`kr` artifacts; only `zh`/`ja`/`ko` remain
+- No API changes; internal build cleanup only
+
 ## 3.0.0 - 29.08.2025
 
 ### Breaking Changes

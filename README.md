@@ -567,7 +567,12 @@ We're actively expanding support for additional Supabase error domains and langu
 
 ## Changelog
 
-**Latest Version: 3.0.0 - 29.08.2025**
+**Latest Version: 3.0.1 - 30.08.2025**
+
+- Build cleanup: clean `dist` before build to remove stale translation bundles after ISO migration (removes old `cn`/`jp`/`kr` outputs)
+- No API changes
+
+**Version: 3.0.0 - 29.08.2025**
 
 - **🚨 BREAKING CHANGE: Migrated to proper ISO 639-1 language codes**
   - `jp` → `ja` (Japanese)
@@ -576,20 +581,6 @@ We're actively expanding support for additional Supabase error domains and langu
 - Fixed behavior: `translateErrorCode()` without `lang` parameter now correctly uses `currentLanguage` instead of browser detection
 - All existing translations maintained with new language codes
 - Improved compliance with international standards
-
-**Version: 2.2.0 - 27.05.2025**
-
-- Added support for 5 new languages:
-  - Japanese (jp) - 日本語
-  - Korean (kr) - 한국어
-  - Polish (pl) - Polski
-  - Portuguese (pt) - Português
-  - Chinese (cn) - 中文
-- Now supporting 9 total languages for comprehensive global coverage
-
-**Version: 2.1.0 - 09.05.2024**
-
-- Added support for database errors (PostgreSQL and PostgREST)
 
 For detailed release notes and migration guides, see the [full CHANGELOG](CHANGELOG.md).
 
