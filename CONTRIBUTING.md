@@ -8,18 +8,26 @@ This project adheres to our [Code of Conduct](./CODE_OF_CONDUCT.md). By particip
 
 ## Getting Started
 
-### 1. Set Up Your Development Environment
+### 1. Fork the Repository
+
+- Go to the [main repository](https://github.com/srothgan/supabase-error-translator-js)
+- Click the **Fork** button (top right) to create your own copy of the repository
+
+### 2. Clone Your Fork
 
 ```bash
-# Clone the repository
-git clone https://github.com/srothgan/supabase-error-translator-js.git
+git clone https://github.com/<your-username>/supabase-error-translator-js.git
 cd supabase-error-translator-js
+```
 
+### 3. Set Up Your Development Environment
+
+```bash
 # Install dependencies
 pnpm install
 ```
 
-### 2. Find an Issue to Work On
+### 4. Find an Issue to Work On
 
 - Check the [issue tracker](https://github.com/srothgan/supabase-error-translator-js/issues) for open issues
 - Look for labels like `good first issue`, `help wanted`, or `translations`
@@ -41,7 +49,7 @@ git checkout -b fix/issue-you-are-fixing
 - Add or update tests for your changes
 - Update documentation as needed
 
-#### Adding New Error Translations
+**Adding New Error Translations**
 
 If you're adding translations for a new language:
 
@@ -53,23 +61,11 @@ If you're adding translations for a new language:
 ### 3. Run Tests and Linting
 
 ```bash
-# Install dependencies
-pnpm install
-
-# Run tests
-pnpm test
-
-# Build the project
-pnpm build
-
-# Run linting (with auto-fix)
-pnpm run lint -- --fix
-
-# Auto-format your code
-pnpm run format
-
-# Type check
-pnpm run type-check
+pnpm test         # Run all tests
+pnpm build        # Build the project
+pnpm run lint     # Lint code
+pnpm run format   # Auto-format code
+pnpm run type-check  # Type check
 ```
 
 ### 4. Commit Your Changes
@@ -83,20 +79,22 @@ docs: update README with new language support
 test: add tests for edge cases
 ```
 
-### 5. Submit a Pull Request
+### 5. Push Your Branch to Your Fork
 
-1. Push your branch to GitHub:
+```bash
+git push origin feature/your-feature-name
+```
 
-   ```bash
-   git push origin feature/your-feature-name
-   ```
+### 6. Open a Pull Request
 
-2. Go to the repository on GitHub and create a new Pull Request
-3. Fill out the PR template with:
-   - A clear description of what you changed
-   - Why the change is needed
-   - Any special testing instructions
-   - Reference to related issues (e.g., "Fixes #123")
+- Go to your fork on GitHub
+- Click "Compare & pull request" to submit your branch to the main repo
+- Fill out the PR template:
+  - What you changed and why
+  - Special testing instructions
+  - Reference any related issues (e.g., `Fixes #123`)
+
+---
 
 ## Review Process
 
