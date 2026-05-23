@@ -1,0 +1,63 @@
+name: Bug report
+description: Report a reproducible problem with translations, fallback behavior, or package output.
+title: 'bug: '
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for taking the time to report a problem. Please include enough detail to reproduce it.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened, and what did you expect instead?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction
+      description: Provide a minimal code sample, test case, or step-by-step reproduction.
+      placeholder: |
+        import { translateErrorCode } from 'supabase-error-translator-js';
+
+        translateErrorCode('...', 'auth', 'de');
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Package version
+      placeholder: 3.0.1
+    validations:
+      required: true
+  - type: dropdown
+    id: service
+    attributes:
+      label: Supabase service
+      options:
+        - auth
+        - database
+        - storage
+        - realtime
+        - functions
+        - not service-specific
+    validations:
+      required: true
+  - type: input
+    id: language
+    attributes:
+      label: Language code
+      placeholder: en, de, es, fr, ja, ko, pl, pt, zh
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Runtime, package manager, bundler, framework, browser, or Node version if relevant.
+      placeholder: Node 22, pnpm 10, Vite, Next.js, browser name/version
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Error output, logs, screenshots, or related links.

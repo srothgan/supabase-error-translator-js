@@ -1,0 +1,44 @@
+name: Feature request
+description: Suggest a language, error domain, translation improvement, or package workflow change.
+title: 'feat: '
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What gap or use case should this address?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: Describe the behavior, translations, or workflow you want.
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - New language
+        - Translation correction
+        - New Supabase service or error domain
+        - Fallback or API behavior
+        - Documentation
+        - Tooling or release workflow
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: examples
+    attributes:
+      label: Examples or references
+      description: Link upstream Supabase docs, error payloads, locale references, or related packages.
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility considerations
+      description: Note any API, package size, runtime, or backward-compatibility concerns.
