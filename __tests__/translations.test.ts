@@ -1,37 +1,39 @@
-import { translations } from "../src/translations";
-import { SUPPORTED_LANGUAGES } from "../src/types";
+import { translations } from '../src/translations';
+import { SUPPORTED_LANGUAGES, SUPPORTED_SERVICES } from '../src/types';
 
-describe("translations index", () => {
-  it("exports maps for en, de, es, fr", () => {
-    expect(translations).toHaveProperty("en");
-    expect(translations).toHaveProperty("de");
-    expect(translations).toHaveProperty("es");
-    expect(translations).toHaveProperty("fr");
+describe('translations index', () => {
+  it('exports one translation map for every supported language', () => {
+    expect(Object.keys(translations).sort()).toEqual([...SUPPORTED_LANGUAGES].sort());
   });
 
-  it("every language defines unknown_error", () => {
-    Object.entries(translations).forEach(([lang, map]) => {
-      expect(map).toHaveProperty("unknown_error");
-      expect(typeof map.unknown_error).toBe("string");
+  it('every language defines a non-empty unknown_error', () => {
+    Object.values(translations).forEach((map) => {
+      expect(map.unknown_error.trim().length).toBeGreaterThan(0);
     });
   });
 });
 
 describe('translation keys completeness', () => {
-  const enKeys = Object.keys(translations.en).sort();
-
   SUPPORTED_LANGUAGES.forEach((lang) => {
-    test(`"${lang}" has the same keys as English`, () => {
-      const map = translations[lang as keyof typeof translations];
-      expect(map).toBeDefined();
+    test(`"${lang}" defines every supported service`, () => {
+      expect(Object.keys(translations[lang].services).sort()).toEqual(
+        [...SUPPORTED_SERVICES].sort(),
+      );
+    });
 
-      const keys = Object.keys(map).sort();
+    SUPPORTED_SERVICES.forEach((service) => {
+      test(`"${lang}" has the same "${service}" keys as English`, () => {
+        const englishKeys = Object.keys(translations.en.services[service]).sort();
+        const targetKeys = Object.keys(translations[lang].services[service]).sort();
 
-      const missing = enKeys.filter((k) => !keys.includes(k));
-      const extra = keys.filter((k) => !enKeys.includes(k));
+        expect(targetKeys).toEqual(englishKeys);
+      });
 
-      expect(missing).toEqual([]);
-      expect(extra).toEqual([]);
+      test(`"${lang}" has non-empty "${service}" messages`, () => {
+        Object.values(translations[lang].services[service]).forEach((message) => {
+          expect(message.trim().length).toBeGreaterThan(0);
+        });
+      });
     });
   });
 });

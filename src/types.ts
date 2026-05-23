@@ -1,15 +1,10 @@
-export type ErrorService = 'auth' | 'storage' | 'realtime' | 'database' | 'functions';
+export const SUPPORTED_SERVICES = ['auth', 'storage', 'realtime', 'database', 'functions'] as const;
+export type ErrorService = (typeof SUPPORTED_SERVICES)[number];
 
 export type TranslationStructure = {
   unknown_error: string;
-  services: {
-    auth: Record<string, string>;
-    storage: Record<string, string>;
-    realtime: Record<string, string>;
-    database: Record<string, string>;
-    functions: Record<string, string>;
-  };
+  services: Record<ErrorService, Record<string, string>>;
 };
 
-export const SUPPORTED_LANGUAGES = ['en', 'de', 'es', 'fr', 'ja', 'ko', 'pl', 'pt', 'zh'] as const;
-export type SupportedLanguage = (typeof SUPPORTED_LANGUAGES)[number];
+export { SUPPORTED_LANGUAGES } from './registry';
+export type { SupportedLanguage } from './registry';

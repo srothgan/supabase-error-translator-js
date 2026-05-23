@@ -1,14 +1,14 @@
-import {
-  detectBrowserLanguage,
-  isSupportedLanguage,
-} from "../src/languages";
-import { SUPPORTED_LANGUAGES } from "../src/types";
+import { detectBrowserLanguage, isSupportedLanguage } from '../src/languages';
+import { SUPPORTED_LANGUAGES } from '../src/types';
 
-describe("languages.ts", () => {
+describe('languages.ts', () => {
   const originalNavigator = window.navigator;
 
-  afterAll(() => {
-    window.navigator = originalNavigator;
+  afterEach(() => {
+    Object.defineProperty(window, 'navigator', {
+      value: originalNavigator,
+      writable: true,
+    });
   });
 
   test('defaults to "en" if navigator or language is unavailable', () => {
@@ -18,25 +18,41 @@ describe("languages.ts", () => {
     Object.defineProperty(window, 'navigator', { value: {}, writable: true });
     expect(detectBrowserLanguage()).toBe('en');
   });
-  
-  test("SUPPORTED_LANGUAGES contains en, de, es, fr", () => {
-    expect(SUPPORTED_LANGUAGES).toEqual(
-      expect.arrayContaining(["en", "de", "es", "fr"]),
-    );
+
+  test('detectBrowserLanguage returns the primary language when supported', () => {
+    Object.defineProperty(window, 'navigator', {
+      value: { language: 'de-DE' },
+      writable: true,
+    });
+
+    expect(detectBrowserLanguage()).toBe('de');
   });
 
-  test("isSupportedLanguage true for supported", () => {
+  test('detectBrowserLanguage falls back to en when primary language is unsupported', () => {
+    Object.defineProperty(window, 'navigator', {
+      value: { language: 'xx-YY' },
+      writable: true,
+    });
+
+    expect(detectBrowserLanguage()).toBe('en');
+  });
+
+  test('SUPPORTED_LANGUAGES contains en, de, es, fr', () => {
+    expect(SUPPORTED_LANGUAGES).toEqual(expect.arrayContaining(['en', 'de', 'es', 'fr']));
+  });
+
+  test('isSupportedLanguage true for supported', () => {
     SUPPORTED_LANGUAGES.forEach((lang) => {
       expect(isSupportedLanguage(lang)).toBe(true);
     });
   });
 
-  test("isSupportedLanguage false for unsupported", () => {
-    expect(isSupportedLanguage("xx" as any)).toBe(false);
+  test('isSupportedLanguage false for unsupported', () => {
+    expect(isSupportedLanguage('xx')).toBe(false);
   });
 
-  test("detectBrowserLanguage returns a supported code or falls back", () => {
+  test('detectBrowserLanguage returns a supported code or falls back', () => {
     const dl = detectBrowserLanguage();
-    expect([...SUPPORTED_LANGUAGES, "en"].includes(dl)).toBe(true);
+    expect([...SUPPORTED_LANGUAGES, 'en'].includes(dl)).toBe(true);
   });
 });
