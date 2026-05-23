@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Supabase support
+    url: https://supabase.com/support
+    about: Use Supabase support for product issues unrelated to this translation package.
