@@ -1,24 +1,36 @@
 import { translations } from './translations';
 import { detectBrowserLanguage, isSupportedLanguage } from './languages';
+import { isSupportedService } from './services';
 import { SupportedLanguage, SUPPORTED_LANGUAGES, ErrorService } from './types';
 
+export { isSupportedLanguage } from './languages';
+export { isSupportedService } from './services';
+export { SUPPORTED_LANGUAGES, SUPPORTED_SERVICES } from './types';
+export type { ErrorService, SupportedLanguage, TranslationStructure } from './types';
+
 let currentLanguage: SupportedLanguage = 'en';
+
+function resolveLanguage(
+  lang: SupportedLanguage | 'auto' | undefined,
+  fallback: SupportedLanguage,
+): SupportedLanguage {
+  if (lang === undefined) {
+    return fallback;
+  }
+
+  if (lang === 'auto') {
+    return detectBrowserLanguage();
+  }
+
+  return isSupportedLanguage(lang) ? lang : 'en';
+}
 
 /**
  * Set the current language. Pass a supported ISO code or "auto".
  * Falls back to English if the given code (or auto-detect) isn't supported.
  */
 export function setLanguage(lang: SupportedLanguage | 'auto'): void {
-  let resolved: SupportedLanguage;
-
-  if (lang === 'auto') {
-    const detected = detectBrowserLanguage();
-    resolved = isSupportedLanguage(detected) ? detected : 'en';
-  } else {
-    resolved = isSupportedLanguage(lang) ? lang : 'en';
-  }
-
-  currentLanguage = resolved;
+  currentLanguage = resolveLanguage(lang, 'en');
 }
 
 /**
@@ -41,14 +53,8 @@ export function translateErrorCode(
   // - undefined => use currentLanguage (as per README contract)
   // - 'auto'    => detect via browser
   // - otherwise => use provided if supported, else 'en'
-  let target: SupportedLanguage;
-  if (lang === undefined) {
-    target = currentLanguage;
-  } else if (lang === 'auto') {
-    target = detectBrowserLanguage();
-  } else {
-    target = isSupportedLanguage(lang) ? lang : 'en';
-  }
+  const target = resolveLanguage(lang, currentLanguage);
+  const targetService = isSupportedService(service) ? service : undefined;
 
   // Get translation sets we'll use for fallbacks
   const targetTranslations = translations[target] || translations.en;
@@ -60,13 +66,13 @@ export function translateErrorCode(
   }
 
   // 1) Specific code in target language + service
-  if (targetTranslations.services[service]?.[key]) {
-    return targetTranslations.services[service][key];
+  if (targetService && targetTranslations.services[targetService]?.[key]) {
+    return targetTranslations.services[targetService][key];
   }
 
   // 2) Fallback: same code in English + service
-  if (englishTranslations.services[service]?.[key]) {
-    return englishTranslations.services[service][key];
+  if (targetService && englishTranslations.services[targetService]?.[key]) {
+    return englishTranslations.services[targetService][key];
   }
 
   // 3) Fallback: unknown_error in target language

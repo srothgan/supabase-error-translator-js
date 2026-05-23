@@ -1,0 +1,30 @@
+import en from './translations/en';
+import de from './translations/de';
+import es from './translations/es';
+import fr from './translations/fr';
+import ja from './translations/ja';
+import ko from './translations/ko';
+import pl from './translations/pl';
+import pt from './translations/pt';
+import zh from './translations/zh';
+import type { TranslationStructure } from './types';
+
+const translationRegistry = {
+  en,
+  de,
+  es,
+  fr,
+  ja,
+  ko,
+  pl,
+  pt,
+  zh,
+} satisfies Record<string, TranslationStructure>;
+
+export type SupportedLanguage = keyof typeof translationRegistry;
+
+export const translations: Record<SupportedLanguage, TranslationStructure> = translationRegistry;
+
+export const SUPPORTED_LANGUAGES = Object.freeze(
+  Object.keys(translations),
+) as readonly SupportedLanguage[];

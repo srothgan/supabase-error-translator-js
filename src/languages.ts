@@ -1,5 +1,4 @@
-import { SupportedLanguage } from './types';
-import { SUPPORTED_LANGUAGES } from './types';
+import { SupportedLanguage, SUPPORTED_LANGUAGES } from './types';
 
 /**
  * Type guard to ensure a string is a SupportedLanguage
