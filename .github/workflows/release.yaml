@@ -1,0 +1,75 @@
+name: Release
+
+on:
+  workflow_run:
+    workflows:
+      - CI
+    types:
+      - completed
+    branches:
+      - main
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.workflow_run.head_sha }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Publish to npm
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.head_branch == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.16.1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install latest npm
+        run: npm install -g npm@latest
+
+      - name: Check package version
+        id: package
+        shell: bash
+        run: |
+          package_name="$(node -p "require('./package.json').name")"
+          package_version="$(node -p "require('./package.json').version")"
+
+          echo "name=${package_name}" >> "$GITHUB_OUTPUT"
+          echo "version=${package_version}" >> "$GITHUB_OUTPUT"
+
+          if npm view "${package_name}@${package_version}" version --registry=https://registry.npmjs.org/ > /dev/null 2>&1; then
+            echo "should_publish=false" >> "$GITHUB_OUTPUT"
+            echo "${package_name}@${package_version} is already published."
+          else
+            echo "should_publish=true" >> "$GITHUB_OUTPUT"
+            echo "${package_name}@${package_version} is not published yet."
+          fi
+
+      - name: Build package
+        if: steps.package.outputs.should_publish == 'true'
+        run: pnpm run build
+
+      - name: Publish package
+        if: steps.package.outputs.should_publish == 'true'
+        run: npm publish
