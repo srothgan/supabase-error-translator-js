@@ -20,7 +20,6 @@ A comprehensive Supabase error code translator supporting 9 languages with ISO l
 - [Error Handling and Fallbacks](#error-handling-and-fallbacks)
 - [API Reference](#api-reference)
 - [Examples](#examples)
-
   - [Auth Error](#auth-error)
   - [Database Error](#database-error)
   - [Storage Error](#storage-error)
@@ -151,7 +150,6 @@ Sets the current language for translations. If "auto" is passed, it will attempt
 Translates a Supabase error code into localized text, normalizing blank or missing codes to unknown_error.
 
 - **Parameters:**
-
   - `code?`: The Supabase error code to translate. If undefined or empty, treated as "unknown_error".
   - `service`: The Supabase service that generated the error:
     - 'auth' - Authentication and user management errors
