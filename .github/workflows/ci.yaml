@@ -19,7 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '22.11.0'
+          node-version: '22.12.0'
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
@@ -42,7 +42,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '22.11.0'
+          node-version: '22.12.0'
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
@@ -61,7 +61,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '22.11.0'
+          node-version: '22.12.0'
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
