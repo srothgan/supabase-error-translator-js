@@ -20,6 +20,8 @@
     "test:watch": "vitest",
     "lint": "eslint .",
     "type-check": "tsc --noEmit",
+    "unused-code": "knip",
+    "audit:ci": "pnpm audit --audit-level=high",
     "prettier:check": "prettier --check .",
     "format": "prettier --write ."
   },
@@ -51,6 +53,7 @@
     "eslint-plugin-prettier": "^5.5.5",
     "globals": "^17.6.0",
     "jsdom": "^29.1.1",
+    "knip": "6.14.2",
     "prettier": "^3.8.3",
     "rimraf": "^6.1.3",
     "typescript": "^6.0.3",
