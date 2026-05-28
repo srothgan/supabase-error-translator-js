@@ -8,5 +8,6 @@ yarn.lock
 # build/artifacts
 dist/
 coverage/
+docs/book/
 node_modules/
 __tests__/

@@ -1,0 +1,17 @@
+[book]
+title = "Supabase Error Translator JS"
+authors = ["Simon Peter Rothgang"]
+description = "Usage and API documentation for supabase-error-translator-js."
+language = "en"
+src = "src"
+
+[build]
+build-dir = "book"
+create-missing = false
+
+[output.html]
+git-repository-url = "https://github.com/srothgan/supabase-error-translator-js"
+edit-url-template = "https://github.com/srothgan/supabase-error-translator-js/edit/main/docs/{path}"
+site-url = "/supabase-error-translator-js/"
+preferred-dark-theme = "ayu"
+no-section-label = true
