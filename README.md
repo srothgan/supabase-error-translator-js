@@ -1,6 +1,6 @@
 # Supabase Error Translator JS
 
-A comprehensive Supabase error code translator supporting 9 languages with ISO language codes
+A comprehensive Supabase error code translator supporting 10 languages with ISO language codes
 
 > **DISCLAIMER:** This is a private project and is NOT officially associated with, endorsed by, or affiliated with Supabase in any way. This project is maintained independently.
 
@@ -42,6 +42,7 @@ This library provides translations for Supabase error codes and messages in mult
 | Language   | Code | Native Name |
 | ---------- | ---- | ----------- |
 | English    | `en` | English     |
+| Arabic     | `ar` | العربية     |
 | German     | `de` | Deutsch     |
 | Spanish    | `es` | Español     |
 | French     | `fr` | Français    |
@@ -102,7 +103,7 @@ console.log(currentLang); // e.g., 'en', 'de', etc.
 
 // Get all supported languages
 const supportedLangs = getSupportedLanguages();
-console.log(supportedLangs); // ['en', 'de', 'es', 'fr', 'ja', 'ko', 'pl', 'pt', 'zh']
+console.log(supportedLangs); // ['en', 'ar', 'de', 'es', 'fr', 'ja', 'ko', 'pl', 'pt', 'zh']
 ```
 
 ### Override Language for Specific Translations
@@ -143,7 +144,7 @@ The `service` parameter allows the system to correctly handle cases where the sa
 Sets the current language for translations. If "auto" is passed, it will attempt to detect the browser's language.
 
 - **Parameters:**
-  - `lang`: A supported ISO language code ('en', 'de', 'es', 'fr', 'ja', 'ko', 'pl', 'pt', 'zh') or "auto"
+  - `lang`: A supported ISO language code ('en', 'ar', 'de', 'es', 'fr', 'ja', 'ko', 'pl', 'pt', 'zh') or "auto"
 - **Behavior:**
   - If an unsupported language is provided, falls back to English ('en')
 
@@ -562,7 +563,7 @@ We're actively expanding support for additional Supabase error domains and langu
 
 **Language Support:**
 
-- **Core Languages**: ✅ 9 languages now supported
+- **Core Languages**: ✅ 10 languages now supported
 - **Additional Languages**: 🔄 Open to community contributions for more languages
 
 ## Changelog

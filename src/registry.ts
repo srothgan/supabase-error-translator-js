@@ -1,4 +1,5 @@
 import en from './translations/en';
+import ar from './translations/ar';
 import de from './translations/de';
 import es from './translations/es';
 import fr from './translations/fr';
@@ -11,6 +12,7 @@ import type { TranslationStructure } from './types';
 
 const translationRegistry = {
   en,
+  ar,
   de,
   es,
   fr,
