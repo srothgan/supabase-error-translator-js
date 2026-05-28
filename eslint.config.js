@@ -12,6 +12,7 @@ module.exports = tseslint.config(
       'node_modules/',
       'dist/',
       'coverage/',
+      'docs/book/',
       '**/*.config.js',
       '**/*.config.ts',
       'eslint.config.js',
