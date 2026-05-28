@@ -72,7 +72,7 @@ jobs:
 
       - name: Publish package
         if: steps.package.outputs.should_publish == 'true'
-        run: npm publish
+        run: npm publish --provenance
 
       - name: Create GitHub release
         if: steps.package.outputs.should_publish == 'true'
@@ -87,7 +87,9 @@ jobs:
             exit 0
           fi
 
+          awk '/^## \['"${{ steps.package.outputs.version }}"'\]/{found=1; next} found && /^## /{exit} found{print}' CHANGELOG.md > release-notes.md
+
           gh release create "${TAG_NAME}" \
             --target "${TARGET_SHA}" \
             --title "${TAG_NAME}" \
-            --generate-notes
+            --notes-file release-notes.md
