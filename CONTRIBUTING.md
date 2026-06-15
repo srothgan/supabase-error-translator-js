@@ -6,6 +6,10 @@ Thank you for your interest in contributing to the Supabase Error Translator! Th
 
 This project adheres to our [Code of Conduct](./CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to the project maintainers.
 
+## Security Issues
+
+Do not report security issues in GitHub issues. Use [SECURITY.md](./SECURITY.md).
+
 ## Getting Started
 
 ### 1. Fork the Repository
@@ -101,6 +105,8 @@ git push origin feature/your-feature-name
 - A maintainer will review your PR and may request changes
 - Address any feedback by making additional commits to your branch
 - Once approved, your PR will be merged
+
+For PRs, use a conventional commit prefix in the title (for example `feat:`, `fix:`, `chore:`). This is enforced by the repository's pull request title check.
 
 ## Reporting Issues
 

@@ -1,0 +1,66 @@
+name: Release Dry Run
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "package.json"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  dry-run-publish:
+    name: Validate npm publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Fetch base branch for version comparison
+        run: git fetch origin "${{ github.base_ref }}" --depth=1
+
+      - name: Compare package version with base branch
+        id: compare
+        shell: bash
+        run: |
+          VERSION=$(node -p "JSON.parse(require('fs').readFileSync('package.json', 'utf8')).version")
+          BASE_VERSION=$(git show origin/${{ github.base_ref }}:package.json | node -p "JSON.parse(require('fs').readFileSync(0, 'utf8')).version")
+
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "base_version=$BASE_VERSION" >> "$GITHUB_OUTPUT"
+
+          if [ "$VERSION" = "$BASE_VERSION" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Version unchanged ($VERSION), skipping dry-run publish."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Version changed: $BASE_VERSION -> $VERSION"
+          fi
+
+      - uses: pnpm/action-setup@v6
+        if: steps.compare.outputs.changed == 'true'
+        with:
+          version: 10.16.1
+
+      - name: Setup Node.js
+        if: steps.compare.outputs.changed == 'true'
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies
+        if: steps.compare.outputs.changed == 'true'
+        run: pnpm install --frozen-lockfile
+
+      - name: Build package
+        if: steps.compare.outputs.changed == 'true'
+        run: pnpm run build
+
+      - name: Run npm publish dry-run
+        if: steps.compare.outputs.changed == 'true'
+        run: npm publish --dry-run --access public

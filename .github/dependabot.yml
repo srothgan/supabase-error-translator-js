@@ -4,9 +4,10 @@ updates:
     directory: /
     schedule:
       interval: weekly
+      day: monday
+    open-pull-requests-limit: 10
     labels:
       - dependencies
-    open-pull-requests-limit: 10
     groups:
       dev-dependencies:
         patterns:
@@ -14,11 +15,16 @@ updates:
         update-types:
           - minor
           - patch
+    commit-message:
+      prefix: chore
+      include: scope
 
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
     labels:
       - dependencies
       - github-actions

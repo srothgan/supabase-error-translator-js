@@ -1,5 +1,11 @@
-blank_issues_enabled: true
+blank_issues_enabled: false
 contact_links:
+  - name: Questions & Discussion
+    url: https://github.com/srothgan/supabase-error-translator-js/discussions
+    about: Use GitHub Discussions for questions, help, and general conversation
+  - name: Security Vulnerability
+    url: https://github.com/srothgan/supabase-error-translator-js/security/advisories/new
+    about: Report security vulnerabilities privately via GitHub Security Advisories
   - name: Supabase support
     url: https://supabase.com/support
-    about: Use Supabase support for product issues unrelated to this translation package.
+    about: For Supabase platform issues unrelated to this library, use Supabase support
