@@ -12,7 +12,7 @@ Closes #
 
 - Automated:
 - Manual:
-- Tests/coverage: 
+- Tests/coverage:
 
 ## Notes
 

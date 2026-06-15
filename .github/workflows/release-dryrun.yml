@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - "package.json"
+      - 'package.json'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
@@ -51,7 +51,7 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 24
-          registry-url: "https://registry.npmjs.org"
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
         if: steps.compare.outputs.changed == 'true'
