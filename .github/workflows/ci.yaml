@@ -87,30 +87,20 @@ jobs:
 
       - run: pnpm run unused-code
 
-  audit:
-    name: Security Audit
+  dependency-review:
+    name: Dependency Review
     runs-on: ubuntu-latest
-    # Non-blocking: dev-only transitive advisories shouldn't fail PR CI.
-    # The weekly Scheduled Security Audit (audit.yml) is the hard gate/alert.
-    continue-on-error: true
+    # Blocking PR gate that fails only on vulnerabilities a PR *introduces*,
+    # so it won't choke on pre-existing transitive advisories. Continuous
+    # monitoring and fix PRs are handled by Dependabot.
+    if: github.event_name == 'pull_request'
     steps:
       - uses: actions/checkout@v7
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6
+      - name: Dependency Review
+        uses: actions/dependency-review-action@v4
         with:
-          version: 10.16.1
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 22
-          cache: pnpm
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - run: pnpm run audit:ci
+          fail-on-severity: high
 
   test:
     name: Test (${{ matrix.node-version }})
