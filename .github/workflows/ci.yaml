@@ -90,6 +90,9 @@ jobs:
   audit:
     name: Security Audit
     runs-on: ubuntu-latest
+    # Non-blocking: dev-only transitive advisories shouldn't fail PR CI.
+    # The weekly Scheduled Security Audit (audit.yml) is the hard gate/alert.
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v7
 
