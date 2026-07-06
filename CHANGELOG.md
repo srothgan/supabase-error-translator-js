@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [3.2.0] - 2026-07-06 [Changes][v3.2.0]
 
 ### Features
 
@@ -170,6 +170,7 @@ translateErrorCode(code, service, lang);
 
 - **Auth translations**: Add initial English, German, French, and Spanish authentication translations.
 
+[v3.2.0]: https://github.com/srothgan/supabase-error-translator-js/compare/v3.1.0...v3.2.0
 [v3.1.0]: https://github.com/srothgan/supabase-error-translator-js/compare/v3.0.1...v3.1.0
 [v3.0.1]: https://github.com/srothgan/supabase-error-translator-js/compare/v3.0.0...v3.0.1
 [v3.0.0]: https://github.com/srothgan/supabase-error-translator-js/compare/v2.2.1...v3.0.0
