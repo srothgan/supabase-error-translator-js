@@ -1,6 +1,8 @@
 /* Japanese translations */
 
-export default {
+import { deepFreeze } from '../deep-freeze';
+
+export default deepFreeze({
   // Fallback Error Code
   unknown_error: '予期しないエラーが発生しました。後でもう一度お試しください。',
   services: {
@@ -358,4 +360,4 @@ export default {
     // Functions-specific errors
     functions: {},
   },
-};
+});

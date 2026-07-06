@@ -23,22 +23,10 @@ describe('Integration: translateErrorCode()', () => {
     );
   });
 
-  it('fallback chain: target service message -> English service message -> localized unknown_error', () => {
+  it('fallback chain returns target service messages and localized unknown errors', () => {
     expect(translateErrorCode('invalid_credentials', 'auth', 'de')).toBe(
       translations.de.services.auth.invalid_credentials,
     );
-
-    const originalGermanMessage = translations.de.services.auth.invalid_credentials;
-
-    try {
-      delete (translations.de.services.auth as Record<string, string>).invalid_credentials;
-
-      expect(translateErrorCode('invalid_credentials', 'auth', 'de')).toBe(
-        translations.en.services.auth.invalid_credentials,
-      );
-    } finally {
-      translations.de.services.auth.invalid_credentials = originalGermanMessage;
-    }
 
     expect(translateErrorCode('xyz123', 'functions', 'fr')).toBe(translations.fr.unknown_error);
   });

@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Features
+
+- Add per-language translation subpath imports under `supabase-error-translator-js/translations/{lang}`.
+- Add `lookupErrorCode()` for strict exact-message lookups without fallback messages.
+- Add an explicit package `exports` map for the supported public import surface.
+
+### Improvements
+
+- Freeze exported translation maps at runtime, including direct per-language subpath imports.
+- Keep `functions` reserved with intentionally empty service maps.
+
+### Compatibility
+
+- The top-level `translateErrorCode()` API and fallback behavior are unchanged.
+- Undocumented deep imports are not part of the supported API and may be blocked by the
+  package exports map.
+
 ## [3.1.0] - 2026-05-28 [Changes][v3.1.0]
 
 ### Features

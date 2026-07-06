@@ -8,9 +8,10 @@ import ko from './translations/ko';
 import pl from './translations/pl';
 import pt from './translations/pt';
 import zh from './translations/zh';
+import { deepFreeze, type DeepReadonly } from './deep-freeze';
 import type { TranslationStructure } from './types';
 
-const translationRegistry = {
+const translationRegistry = deepFreeze({
   en,
   ar,
   de,
@@ -21,11 +22,12 @@ const translationRegistry = {
   pl,
   pt,
   zh,
-} satisfies Record<string, TranslationStructure>;
+} satisfies Record<string, TranslationStructure>);
 
 export type SupportedLanguage = keyof typeof translationRegistry;
+export type TranslationRegistry = DeepReadonly<Record<SupportedLanguage, TranslationStructure>>;
 
-export const translations: Record<SupportedLanguage, TranslationStructure> = translationRegistry;
+export const translations: TranslationRegistry = translationRegistry;
 
 export const SUPPORTED_LANGUAGES = Object.freeze(
   Object.keys(translations),

@@ -32,6 +32,40 @@ Returns a translated string for a Supabase error code.
 | `service` | One of `auth`, `storage`, `realtime`, `database`, or `functions`.                                    |
 | `lang`    | Optional per-call language override. `auto` uses browser detection.                                  |
 
+## `lookupErrorCode(code, service, lang?)`
+
+```ts
+function lookupErrorCode(
+  code: string | undefined,
+  service: ErrorService,
+  lang?: SupportedLanguage | 'auto',
+): ErrorCodeLookupResult;
+```
+
+Performs an exact lookup without fallback messages.
+
+| Argument  | Description                                                                              |
+| --------- | ---------------------------------------------------------------------------------------- |
+| `code`    | The Supabase error code. Empty, whitespace-only, or undefined values return `undefined`. |
+| `service` | One of `auth`, `storage`, `realtime`, `database`, or `functions`.                        |
+| `lang`    | Optional per-call language override. Unsupported values resolve to `en`.                 |
+
+The result contains the normalized code, resolved language, service, and either the exact
+message or `undefined`:
+
+```ts
+type ErrorCodeLookupResult = {
+  code: string;
+  service: ErrorService;
+  language: SupportedLanguage;
+  message: string | undefined;
+};
+```
+
+`lookupErrorCode()` does not fall back to English and does not fall back to
+`unknown_error`. Passing `unknown_error` explicitly returns the localized unknown-error
+message.
+
 ## `getCurrentLanguage()`
 
 ```ts
@@ -70,8 +104,35 @@ Runtime guard for supported service names.
 import {
   SUPPORTED_LANGUAGES,
   SUPPORTED_SERVICES,
+  type ErrorCodeLookupResult,
   type ErrorService,
   type SupportedLanguage,
   type TranslationStructure,
 } from 'supabase-error-translator-js';
 ```
+
+## Translation Subpaths
+
+```ts
+import { translations } from 'supabase-error-translator-js/translations';
+import de from 'supabase-error-translator-js/translations/de';
+import en from 'supabase-error-translator-js/translations/en';
+```
+
+Supported language subpaths:
+
+```text
+supabase-error-translator-js/translations/ar
+supabase-error-translator-js/translations/de
+supabase-error-translator-js/translations/en
+supabase-error-translator-js/translations/es
+supabase-error-translator-js/translations/fr
+supabase-error-translator-js/translations/ja
+supabase-error-translator-js/translations/ko
+supabase-error-translator-js/translations/pl
+supabase-error-translator-js/translations/pt
+supabase-error-translator-js/translations/zh
+```
+
+Translation maps are immutable at runtime. The `functions` service is reserved and
+currently has empty maps.

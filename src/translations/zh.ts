@@ -1,6 +1,8 @@
 /* Chinese Translations */
 
-export default {
+import { deepFreeze } from '../deep-freeze';
+
+export default deepFreeze({
   // Fallback Error Code
   unknown_error: '发生了意外错误，请稍后重试。',
   services: {
@@ -301,4 +303,4 @@ export default {
     // Functions-specific errors
     functions: {},
   },
-};
+});

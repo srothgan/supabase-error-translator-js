@@ -1,6 +1,8 @@
 /* Korean translations */
 
-export default {
+import { deepFreeze } from '../deep-freeze';
+
+export default deepFreeze({
   // Fallback Error Code
   unknown_error: '예기치 않은 오류가 발생했습니다. 나중에 다시 시도해 주세요.',
   services: {
@@ -346,4 +348,4 @@ export default {
     // Functions-specific errors
     functions: {},
   },
-};
+});

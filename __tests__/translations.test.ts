@@ -6,6 +6,19 @@ describe('translations index', () => {
     expect(Object.keys(translations).sort()).toEqual([...SUPPORTED_LANGUAGES].sort());
   });
 
+  it('exports immutable translation maps', () => {
+    expect(Object.isFrozen(translations)).toBe(true);
+
+    SUPPORTED_LANGUAGES.forEach((lang) => {
+      expect(Object.isFrozen(translations[lang])).toBe(true);
+      expect(Object.isFrozen(translations[lang].services)).toBe(true);
+
+      SUPPORTED_SERVICES.forEach((service) => {
+        expect(Object.isFrozen(translations[lang].services[service])).toBe(true);
+      });
+    });
+  });
+
   it('every language defines a non-empty unknown_error', () => {
     Object.values(translations).forEach((map) => {
       expect(map.unknown_error.trim().length).toBeGreaterThan(0);

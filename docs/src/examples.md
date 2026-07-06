@@ -108,3 +108,32 @@ const service = isSupportedService(serviceFromLog) ? serviceFromLog : 'auth';
 
 const message = translateErrorCode(codeFromLog, service, language);
 ```
+
+## Strict Lookup
+
+Use `lookupErrorCode()` when application logic needs to distinguish exact translations
+from fallback messages.
+
+```ts
+import { lookupErrorCode } from 'supabase-error-translator-js';
+
+const result = lookupErrorCode('invalid_credentials', 'auth', 'de');
+
+if (result.message) {
+  console.log(result.message);
+} else {
+  console.log('No exact translation is available for this code.');
+}
+```
+
+## Per-Language Translation Data
+
+Subpath imports expose immutable static maps for each supported language.
+
+```ts
+import { translations } from 'supabase-error-translator-js/translations';
+import de from 'supabase-error-translator-js/translations/de';
+
+console.log(de.services.auth.invalid_credentials);
+console.log(translations.en.services.storage.NoSuchBucket);
+```
