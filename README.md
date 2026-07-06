@@ -103,6 +103,27 @@ import { translateErrorCode } from 'supabase-error-translator-js';
 const message = translateErrorCode('invalid_credentials', 'auth', 'de');
 ```
 
+Use the strict lookup API when you need to know whether a translation exists without any
+fallback message:
+
+```ts
+import { lookupErrorCode } from 'supabase-error-translator-js';
+
+const result = lookupErrorCode('invalid_credentials', 'auth', 'de');
+
+if (result.message) {
+  console.log(result.message);
+}
+```
+
+Import one immutable language map when you only need static translation data:
+
+```ts
+import de from 'supabase-error-translator-js/translations/de';
+
+console.log(de.services.auth.invalid_credentials);
+```
+
 Set a default language:
 
 ```ts
@@ -137,14 +158,27 @@ import {
   getSupportedLanguages,
   isSupportedLanguage,
   isSupportedService,
+  lookupErrorCode,
   setLanguage,
   translateErrorCode,
   SUPPORTED_LANGUAGES,
   SUPPORTED_SERVICES,
+  type ErrorCodeLookupResult,
   type ErrorService,
   type SupportedLanguage,
 } from 'supabase-error-translator-js';
 ```
+
+Public translation subpaths are also available:
+
+```ts
+import { translations } from 'supabase-error-translator-js/translations';
+import en from 'supabase-error-translator-js/translations/en';
+import de from 'supabase-error-translator-js/translations/de';
+```
+
+The exported translation maps are frozen at runtime. Undocumented deep imports are not
+part of the supported API.
 
 ## Changelog
 

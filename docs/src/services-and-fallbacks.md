@@ -34,6 +34,23 @@ For other codes, the lookup order is:
 Unsupported service names are handled defensively at runtime and return the localized
 unknown-error fallback.
 
+## Strict Lookup
+
+`lookupErrorCode()` is intentionally different from `translateErrorCode()`: it performs
+only an exact lookup and returns `message: undefined` when no exact translation exists.
+
+```ts
+import { lookupErrorCode } from 'supabase-error-translator-js';
+
+const result = lookupErrorCode('not_a_real_code', 'auth', 'de');
+
+console.log(result.message);
+// undefined
+```
+
+Empty, whitespace-only, or missing codes also return `message: undefined`.
+`unknown_error` is returned only when that code is passed explicitly.
+
 ## Unknown Codes
 
 ```ts

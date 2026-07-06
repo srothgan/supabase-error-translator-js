@@ -10,6 +10,24 @@ const message = translateErrorCode('invalid_credentials', 'auth', 'de');
 console.log(message);
 ```
 
+Check for exact translations without fallback messages:
+
+```ts
+import { lookupErrorCode } from 'supabase-error-translator-js';
+
+const result = lookupErrorCode('invalid_credentials', 'auth', 'de');
+
+console.log(result.message);
+```
+
+Import a single immutable language map:
+
+```ts
+import de from 'supabase-error-translator-js/translations/de';
+
+console.log(de.services.auth.invalid_credentials);
+```
+
 Set a process-wide or browser-session default language:
 
 ```ts
