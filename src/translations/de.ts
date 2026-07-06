@@ -1,6 +1,8 @@
 /* German translations */
 
-export default {
+import { deepFreeze } from '../deep-freeze';
+
+export default deepFreeze({
   // Fallback Error Code
   unknown_error: 'Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.',
   services: {
@@ -322,4 +324,4 @@ export default {
     // Functions-specific errors
     functions: {},
   },
-};
+});

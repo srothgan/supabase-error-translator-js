@@ -4,6 +4,56 @@
   "description": "A comprehensive Supabase error code translator supporting 10 languages with ISO language codes",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./translations": {
+      "types": "./dist/translations/index.d.ts",
+      "default": "./dist/translations/index.js"
+    },
+    "./translations/ar": {
+      "types": "./dist/translations/ar.d.ts",
+      "default": "./dist/translations/ar.js"
+    },
+    "./translations/de": {
+      "types": "./dist/translations/de.d.ts",
+      "default": "./dist/translations/de.js"
+    },
+    "./translations/en": {
+      "types": "./dist/translations/en.d.ts",
+      "default": "./dist/translations/en.js"
+    },
+    "./translations/es": {
+      "types": "./dist/translations/es.d.ts",
+      "default": "./dist/translations/es.js"
+    },
+    "./translations/fr": {
+      "types": "./dist/translations/fr.d.ts",
+      "default": "./dist/translations/fr.js"
+    },
+    "./translations/ja": {
+      "types": "./dist/translations/ja.d.ts",
+      "default": "./dist/translations/ja.js"
+    },
+    "./translations/ko": {
+      "types": "./dist/translations/ko.d.ts",
+      "default": "./dist/translations/ko.js"
+    },
+    "./translations/pl": {
+      "types": "./dist/translations/pl.d.ts",
+      "default": "./dist/translations/pl.js"
+    },
+    "./translations/pt": {
+      "types": "./dist/translations/pt.d.ts",
+      "default": "./dist/translations/pt.js"
+    },
+    "./translations/zh": {
+      "types": "./dist/translations/zh.d.ts",
+      "default": "./dist/translations/zh.js"
+    }
+  },
   "engines": {
     "node": ">=18"
   },
@@ -21,13 +71,14 @@
     "lint": "eslint .",
     "type-check": "tsc --noEmit",
     "unused-code": "knip",
+    "test:package-exports": "pnpm run build && node scripts/package-exports-smoke.mjs",
     "audit:ci": "pnpm audit --audit-level=high",
     "prettier:check": "prettier --check .",
     "format": "prettier --write ."
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/srothgan/supabase-error-translator-js.git"
+    "url": "git+https://github.com/srothgan/supabase-error-translator-js.git"
   },
   "bugs": {
     "url": "https://github.com/srothgan/supabase-error-translator-js/issues"

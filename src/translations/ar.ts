@@ -1,6 +1,8 @@
 /* Arabic translations */
 
-export default {
+import { deepFreeze } from '../deep-freeze';
+
+export default deepFreeze({
   // Fallback Error Code
   unknown_error: 'حدث خطأ غير متوقَّع. يُرجى المحاولة لاحقاً.',
   services: {
@@ -294,4 +296,4 @@ export default {
     // Functions-specific errors
     functions: {},
   },
-};
+});

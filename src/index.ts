@@ -2,11 +2,17 @@ import { translations } from './translations';
 import { detectBrowserLanguage, isSupportedLanguage } from './languages';
 import { isSupportedService } from './services';
 import { SupportedLanguage, SUPPORTED_LANGUAGES, ErrorService } from './types';
+import type { ErrorCodeLookupResult } from './types';
 
 export { isSupportedLanguage } from './languages';
 export { isSupportedService } from './services';
 export { SUPPORTED_LANGUAGES, SUPPORTED_SERVICES } from './types';
-export type { ErrorService, SupportedLanguage, TranslationStructure } from './types';
+export type {
+  ErrorCodeLookupResult,
+  ErrorService,
+  SupportedLanguage,
+  TranslationStructure,
+} from './types';
 
 let currentLanguage: SupportedLanguage = 'en';
 
@@ -82,6 +88,31 @@ export function translateErrorCode(
 
   // 4) Final fallback: English 'unknown_error'
   return englishTranslations.unknown_error;
+}
+
+/**
+ * Strictly look up a Supabase error code without fallback messages.
+ */
+export function lookupErrorCode(
+  code: string | undefined,
+  service: ErrorService,
+  lang?: SupportedLanguage | 'auto',
+): ErrorCodeLookupResult {
+  const target = resolveLanguage(lang, currentLanguage);
+  const key = code?.trim();
+  const message =
+    key === 'unknown_error'
+      ? translations[target].unknown_error
+      : key && isSupportedService(service)
+        ? translations[target].services[service]?.[key]
+        : undefined;
+
+  return {
+    code: key ?? '',
+    service,
+    language: target,
+    message,
+  };
 }
 
 /** Get the currently active language. */
