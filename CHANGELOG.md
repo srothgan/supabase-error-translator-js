@@ -6,8 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Documentation
 
-- Reorder README sections to place installation and quick-start guidance before the detailed
-  supported-error-codes overview.
+- Reorder README sections to place installation and quick-start guidance before the detailed supported-error-codes overview.
 
 ### CI and Dependencies
 
