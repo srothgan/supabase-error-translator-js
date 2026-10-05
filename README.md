@@ -43,44 +43,6 @@ auth, storage, realtime, database, functions
 `functions` is accepted by the API, but its translation maps are currently empty and will
 return the unknown-error fallback.
 
-## Supported Error Codes
-
-The library supports numerous Supabase error codes, including but not limited to:
-
-- Auth
-  - Authentication errors: invalid credentials, email not confirmed, and related sign-in
-    failures
-  - User management errors: user not found, already exists, and identity conflicts
-  - Rate limiting errors: too many requests, email send rate limits, and SMS send limits
-  - MFA-related errors: expired challenges, failed verification, and disabled factors
-  - OAuth and SSO errors: disabled providers, bad callbacks, and SAML/SSO configuration
-    issues
-- Realtime
-  - Configuration errors: disabled realtime, tenant not found, and table setup issues
-  - Connection errors: WebSocket connection and authorization failures
-  - Rate limiting errors: channel, connection, and join rate limits
-  - Database errors: CDC stream, replication slot, and subscription failures
-  - System errors: node disconnection, migration failures, and counter tracking errors
-- Storage
-  - Resource errors: bucket, file, upload, and key not found or already exists
-  - Authorization errors: invalid tokens, invalid signatures, and access denied
-  - Validation errors: invalid parameters, bucket names, keys, ranges, and MIME types
-  - Service limitations: size limits, credential limits, locks, and request slowdown
-  - Infrastructure errors: database timeouts, database errors, and internal errors
-- Database
-  - Connection errors: server disconnections, inactive connections, and failed connections
-  - Data type errors: type mismatches, invalid conversions, overflow, and invalid dates
-  - Constraint violations: unique, foreign key, not-null, and check constraints
-  - Access and authentication errors: permission denied and authentication failures
-  - Resource limitations: memory, disk, connection, and program limits
-  - Query syntax issues: syntax errors, invalid names, missing objects, and ambiguous
-    references
-  - Transaction errors: serialization failures, deadlocks, and aborted transactions
-  - PostgREST-specific errors: JWT validation, schema visibility, and API request issues
-  - Server-side errors: assertions, unavailable resources, cancellations, and timeouts
-
-Each error code is translated according to the specified language.
-
 ## Install
 
 ```bash
@@ -136,6 +98,44 @@ const message = translateErrorCode('email_not_confirmed', 'auth');
 
 For request-scoped server code, prefer passing the language directly to
 `translateErrorCode()` instead of using the module-level default.
+
+## Supported Error Codes
+
+The library supports numerous Supabase error codes, including but not limited to:
+
+- Auth
+  - Authentication errors: invalid credentials, email not confirmed, and related sign-in
+    failures
+  - User management errors: user not found, already exists, and identity conflicts
+  - Rate limiting errors: too many requests, email send rate limits, and SMS send limits
+  - MFA-related errors: expired challenges, failed verification, and disabled factors
+  - OAuth and SSO errors: disabled providers, bad callbacks, and SAML/SSO configuration
+    issues
+- Realtime
+  - Configuration errors: disabled realtime, tenant not found, and table setup issues
+  - Connection errors: WebSocket connection and authorization failures
+  - Rate limiting errors: channel, connection, and join rate limits
+  - Database errors: CDC stream, replication slot, and subscription failures
+  - System errors: node disconnection, migration failures, and counter tracking errors
+- Storage
+  - Resource errors: bucket, file, upload, and key not found or already exists
+  - Authorization errors: invalid tokens, invalid signatures, and access denied
+  - Validation errors: invalid parameters, bucket names, keys, ranges, and MIME types
+  - Service limitations: size limits, credential limits, locks, and request slowdown
+  - Infrastructure errors: database timeouts, database errors, and internal errors
+- Database
+  - Connection errors: server disconnections, inactive connections, and failed connections
+  - Data type errors: type mismatches, invalid conversions, overflow, and invalid dates
+  - Constraint violations: unique, foreign key, not-null, and check constraints
+  - Access and authentication errors: permission denied and authentication failures
+  - Resource limitations: memory, disk, connection, and program limits
+  - Query syntax issues: syntax errors, invalid names, missing objects, and ambiguous
+    references
+  - Transaction errors: serialization failures, deadlocks, and aborted transactions
+  - PostgREST-specific errors: JWT validation, schema visibility, and API request issues
+  - Server-side errors: assertions, unavailable resources, cancellations, and timeouts
+
+Each error code is translated according to the specified language.
 
 ## Documentation
 
