@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.2.1] - 2026-10-05 [Changes][v3.2.1]
+
+### Documentation
+
+- Reorder README sections to place installation and quick-start guidance before the detailed supported-error-codes overview.
+
+### CI and Dependencies
+
+- Upgrade development dependencies including `jsdom`, `knip`, and `vite`.
+- Refresh GitHub Actions workflows to use `actions/setup-node@v7`.
+- Narrow CI Node.js test and lint matrices from `20/22/24` to `22/24`.
+
+### Compatibility
+
+- No runtime API changes; `translateErrorCode()` and public package exports are unchanged.
+
 ## [3.2.0] - 2026-07-06 [Changes][v3.2.0]
 
 ### Features
@@ -170,6 +186,7 @@ translateErrorCode(code, service, lang);
 
 - **Auth translations**: Add initial English, German, French, and Spanish authentication translations.
 
+[v3.2.1]: https://github.com/srothgan/supabase-error-translator-js/compare/v3.2.0...v3.2.1
 [v3.2.0]: https://github.com/srothgan/supabase-error-translator-js/compare/v3.1.0...v3.2.0
 [v3.1.0]: https://github.com/srothgan/supabase-error-translator-js/compare/v3.0.1...v3.1.0
 [v3.0.1]: https://github.com/srothgan/supabase-error-translator-js/compare/v3.0.0...v3.0.1
